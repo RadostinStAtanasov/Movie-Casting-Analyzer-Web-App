@@ -1,4 +1,5 @@
 import { useState } from "react";
+// import actors from "../../../public/actors.csv";
 
 export default function CsvDateParser() {
   const [data, setData] = useState([]);
@@ -10,7 +11,10 @@ export default function CsvDateParser() {
 
     // Try parsing common date formats
     const formats = [
-      { regex: /^\d{4}-\d{2}-\d{2}$/, parse: (str) => new Date(str) }, // YYYY-MM-DD
+      {
+        regex: /^\d{4}-\d{2}-\d{2}$/,
+        parse: (str) => new Date(str),
+      }, // YYYY-MM-DD
       {
         regex: /^\d{2}\/\d{2}\/\d{4}$/,
         parse: (str) => {
@@ -45,9 +49,9 @@ export default function CsvDateParser() {
     return dateStr;
   };
 
-  const handleFileUpload = (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
+  function handleFileUpload(actors) {
+    // const file = event.target.files[0];
+    // if (!file) return;
 
     const reader = new FileReader();
 
@@ -103,15 +107,20 @@ export default function CsvDateParser() {
       );
 
       setData(processedData);
+      console.log(processedData);
     };
 
     reader.readAsText(file);
-  };
+    return processedData;
+  }
+
+  const result = handleFileUpload(actors);
+  console.log(result);
 
   return (
     <div>
       <h2>Upload CSV File with Dates</h2>
-      <input type="file" accept=".csv" onChange={handleFileUpload} />
+      {/* <input type="file" accept=".csv" onChange={handleFileUpload} /> */}
       {data.length > 0 && (
         <table style={{ borderCollapse: "collapse", marginTop: "20px" }}>
           <thead>

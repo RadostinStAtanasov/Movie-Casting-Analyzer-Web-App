@@ -3,7 +3,7 @@ import HomePage from "./assets/pages/Home";
 import MoviePage from "./assets/pages/Movie";
 import ActorPage from "./assets/pages/Actor";
 import RootLayout from "./assets/pages/Root";
-import CSVDateParser from "./assets/components/CsvDateParser";
+import CsvDateParser from "./assets/components/CsvDateParser";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +20,6 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <CSVDateParser />
       <RouterProvider router={router} />
     </>
   );

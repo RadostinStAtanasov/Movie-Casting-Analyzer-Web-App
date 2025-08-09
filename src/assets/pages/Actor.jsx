@@ -1,21 +1,34 @@
-// import { csvParser } from "../util/parser";
-//import actors from "../data/actors.csv";
-
-//const ACTORS_PARSED = csvParser(actors);
+import ParserForCSVtoJSON from "../components/ParserForCSVtoJSON";
+import { useState, useEffect } from "react";
+import Papa from "papaparse";
 
 export default function ActorPage() {
+  const [rows, setRows] = useState([]);
+  useEffect(() => {
+    async function getData() {
+      const response = await fetch("./actors.csv");
+      const reader = response.body.getReader();
+      const result = await reader.read(); // raw array
+      const decoder = new TextDecoder("utf-8");
+      const csv = decoder.decode(result.value); // the csv text
+      const results = Papa.parse(csv, { header: true }); // object with { data, errors, meta }
+      const rows = results.data; // array of objects
+      console.log(rows);
+      setRows(rows);
+    }
+    getData();
+  }, []);
+
   return (
-    <>
-      <h1>Actor Page</h1>
-      {/* <div>
-        <ul>
-          {ACTORS_PARSED.map((item, index) => (
-            <li key={item[index]}>
-              {item[0]} {item[1]} {item[2]} dali 6te stane
-            </li>
-          ))}
-        </ul>
-      </div> */}
-    </>
+    <div className="app">
+      <h1>Hello from Actors</h1>
+      <ul>
+        {rows.map((item, index) => (
+          <li key={index}>
+            {item.ID} | {item.FullName} | {item.BirthDate}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
