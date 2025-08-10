@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import Papa from "papaparse";
 
-export function parserData(inputData) {
+export function parserData() {
   const [rows, setRows] = useState([]);
+
   useEffect(() => {
-    async function parserData() {
-      const response = await fetch(inputData);
+    async function getData() {
+      const response = await fetch("./movies.csv");
       const reader = response.body.getReader();
       const result = await reader.read(); // raw array
       const decoder = new TextDecoder("utf-8");
@@ -15,8 +16,8 @@ export function parserData(inputData) {
       console.log(rows);
       setRows(rows);
     }
-    //console.log(rows);
-    parserData();
-  }, []); // [] means just do this once, after initial render
+    getData();
+  }, []);
+
   return rows;
 }

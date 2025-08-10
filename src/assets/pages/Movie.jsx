@@ -21,7 +21,6 @@ export default function MoviePage() {
   return (
     <div className="app">
       <h1>Movie Page</h1>
-      <h1>Hello from parse</h1>
       <ul>
         {rows.map((item, index) => (
           <li key={index}>

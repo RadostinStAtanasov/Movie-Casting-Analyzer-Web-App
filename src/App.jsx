@@ -3,7 +3,6 @@ import HomePage from "./assets/pages/Home";
 import MoviePage from "./assets/pages/Movie";
 import ActorPage from "./assets/pages/Actor";
 import RootLayout from "./assets/pages/Root";
-import CsvDateParser from "./assets/components/CsvDateParser";
 
 const router = createBrowserRouter([
   {

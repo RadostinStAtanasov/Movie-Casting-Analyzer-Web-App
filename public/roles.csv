@@ -25,8 +25,8 @@ ID,ActorID,MovieID,RoleName
 24,4,7,Scientist
 25,11,7,Scientist
 26,42,7,Pilot
-27,35,8,Soldier
-28,40,8,Engineer
+27,5,8,Soldier
+28,2,8,Engineer
 29,2,8,Doctor
 30,17,9,Soldier
 31,6,9,Scientist
@@ -47,5 +47,5 @@ ID,ActorID,MovieID,RoleName
 46,38,13,Doctor
 47,47,13,Spy
 48,1,13,Scientist
-49,10,13,null
-50,28,13,Spy
+49,2,13,null
+50,5,13,Spy

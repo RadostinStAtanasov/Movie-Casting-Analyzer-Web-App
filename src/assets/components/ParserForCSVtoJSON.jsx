@@ -17,6 +17,7 @@ export default function ParserForCSVtoJSON({ data }) {
       return rows;
     }
     getData();
+    <HomePage data={rows} />;
   }, []); // [] means just do this once, after initial render
   return (
     <div className="Archive">

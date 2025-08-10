@@ -1,4 +1,3 @@
-import ParserForCSVtoJSON from "../components/ParserForCSVtoJSON";
 import { useState, useEffect } from "react";
 import Papa from "papaparse";
 
