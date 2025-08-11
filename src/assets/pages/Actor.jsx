@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Papa from "papaparse";
+import { Link } from "react-router-dom";
 
 export default function ActorPage() {
   const [rows, setRows] = useState([]);
@@ -21,10 +22,10 @@ export default function ActorPage() {
   return (
     <div className="app">
       <h1>Hello from Actors</h1>
-      <ul>
+      <ul style={{ textAlign: "center", fontSize: "28px" }}>
         {rows.map((item, index) => (
           <li key={index}>
-            {item.ID} | {item.FullName} | {item.BirthDate}
+            <Link to={`/actors/${item.ID}`}>{item.FullName}</Link>
           </li>
         ))}
       </ul>

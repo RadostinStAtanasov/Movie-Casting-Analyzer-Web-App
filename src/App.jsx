@@ -8,8 +8,7 @@ import MoviePage from "./assets/pages/Movie";
 import ActorPage from "./assets/pages/Actor";
 import RootLayout from "./assets/pages/Root";
 import MovieDetailsPage from "./assets/pages/MovieDetails";
-import Context from "./assets/components/Context";
-import { useState, useEffect } from "react";
+import ActorDetailsPage from "./assets/pages/ActorDetails";
 
 const router = createBrowserRouter([
   {
@@ -18,8 +17,9 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <HomePage /> },
       { path: "/movies", element: <MoviePage /> },
-      { path: "/movies/:movieId", element: <MovieDetailsPage /> },
       { path: "/actors", element: <ActorPage /> },
+      { path: "/movies/:movieId", element: <MovieDetailsPage /> },
+      { path: "/actors/:actorId", element: <ActorDetailsPage /> },
     ],
   },
 ]);
@@ -31,9 +31,7 @@ function App() {
 
   return (
     <>
-      <Context.Provider value={userInfo}>
-        <RouterProvider router={router} />
-      </Context.Provider>
+      <RouterProvider router={router} />
     </>
   );
 }

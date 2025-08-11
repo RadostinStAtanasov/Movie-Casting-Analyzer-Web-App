@@ -28,14 +28,7 @@ export default function MoviePage({ id }) {
       <ul style={{ textAlign: "center", fontSize: "24px" }}>
         {rows.map((item, index) => (
           <li key={index}>
-            <Link
-              to={{
-                pathname: `/movies/${item.ID}`,
-                state: { title: item.title },
-              }}
-            >
-              {item.Title}
-            </Link>
+            <Link to={`/movies/${item.ID}`}>{item.Title}</Link>
           </li>
         ))}
       </ul>
