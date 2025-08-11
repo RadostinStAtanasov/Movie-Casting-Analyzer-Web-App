@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import Papa from "papaparse";
+import { Link, useParams } from "react-router-dom";
+import MovieDetailsPage from "./MovieDetails";
 
-export default function MoviePage() {
+export default function MoviePage({ id }) {
   const [rows, setRows] = useState([]);
+
   useEffect(() => {
     async function getData() {
       const response = await fetch("./movies.csv");
@@ -12,7 +15,8 @@ export default function MoviePage() {
       const csv = decoder.decode(result.value); // the csv text
       const results = Papa.parse(csv, { header: true }); // object with { data, errors, meta }
       const rows = results.data; // array of objects
-      console.log(rows);
+      //console.log(rows);
+      // console.log(csv.split(","));
       setRows(rows);
     }
     getData();
@@ -20,11 +24,18 @@ export default function MoviePage() {
 
   return (
     <div className="app">
-      <h1>Movie Page</h1>
-      <ul>
+      <h1>All Movies</h1>
+      <ul style={{ textAlign: "center", fontSize: "24px" }}>
         {rows.map((item, index) => (
           <li key={index}>
-            {item.ID} | {item.Title} | {item.ReleaseDate}
+            <Link
+              to={{
+                pathname: `/movies/${item.ID}`,
+                state: { title: item.title },
+              }}
+            >
+              {item.Title}
+            </Link>
           </li>
         ))}
       </ul>
