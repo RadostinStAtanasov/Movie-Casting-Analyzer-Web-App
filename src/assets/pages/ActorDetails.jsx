@@ -115,8 +115,6 @@ export default function ActorDetailsPage() {
     resultActorDetailsRoles
   );
 
-  console.log(resultActorRolesMovies);
-
   return (
     <>
       <h1>All movies acted in</h1>

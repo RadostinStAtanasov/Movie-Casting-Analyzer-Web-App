@@ -82,7 +82,7 @@ export default function MovieDetailsPage() {
         objCSVArr.push(objCSV);
         objCSV = {};
       }
-      console.log(objCSVArr);
+      // console.log(objCSVArr);
       setMovieActorsRoles(objCSVArr);
     }
     getData();
