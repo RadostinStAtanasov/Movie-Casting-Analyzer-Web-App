@@ -1,6 +1,5 @@
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Papa from "papaparse";
 
 export default function MovieDetailsPage() {
   const params = useParams();
@@ -16,11 +15,26 @@ export default function MovieDetailsPage() {
       const result = await reader.read(); // raw array
       const decoder = new TextDecoder("utf-8");
       const csv = decoder.decode(result.value); // the csv text
-      const results = Papa.parse(csv, { header: true }); // object with { data, errors, meta }
-      const rows = results.data; // array of objects
-      //console.log(rows);
-      // console.log(csv.split(","));
-      setRows(rows);
+
+      let arrCsv = csv.split("\r\n");
+      let firstLineTitles = arrCsv[0].split(",");
+      let firstTitle = firstLineTitles[0];
+      let secondTitle = firstLineTitles[1];
+      let thirdTitle = firstLineTitles[2];
+      let objCSV = {};
+      let objCSVArr = [];
+
+      for (let i = 1; i < arrCsv.length; i++) {
+        let row = arrCsv[i].split(",");
+
+        objCSV[firstTitle] = row[0];
+        objCSV[secondTitle] = row[1];
+        objCSV[thirdTitle] = row[2];
+
+        objCSVArr.push(objCSV);
+        objCSV = {};
+      }
+      setRows(objCSVArr);
     }
     getData();
   }, []);
@@ -47,11 +61,29 @@ export default function MovieDetailsPage() {
       const result = await reader.read(); // raw array
       const decoder = new TextDecoder("utf-8");
       const csv = decoder.decode(result.value); // the csv text
-      const results = Papa.parse(csv, { header: true }); // object with { data, errors, meta }
-      const rows = results.data; // array of objects
-      //console.log(rows);
-      // console.log(csv.split(","));
-      setMovieActorsRoles(rows);
+
+      let arrCsv = csv.split("\r\n");
+      let firstLineTitles = arrCsv[0].split(",");
+      let firstTitle = firstLineTitles[0];
+      let secondTitle = firstLineTitles[1];
+      let thirdTitle = firstLineTitles[2];
+      let forthTitle = firstLineTitles[3];
+      let objCSV = {};
+      let objCSVArr = [];
+
+      for (let i = 1; i < arrCsv.length; i++) {
+        let row = arrCsv[i].split(",");
+
+        objCSV[firstTitle] = row[0];
+        objCSV[secondTitle] = row[1];
+        objCSV[thirdTitle] = row[2];
+        objCSV[forthTitle] = row[3];
+
+        objCSVArr.push(objCSV);
+        objCSV = {};
+      }
+      console.log(objCSVArr);
+      setMovieActorsRoles(objCSVArr);
     }
     getData();
   }, []);
@@ -81,10 +113,27 @@ export default function MovieDetailsPage() {
       const result = await reader.read(); // raw array
       const decoder = new TextDecoder("utf-8");
       const csv = decoder.decode(result.value); // the csv text
-      const results = Papa.parse(csv, { header: true }); // object with { data, errors, meta }
-      const rows = results.data; // array of objects
-      //console.log(rows);
-      setMovieActorsNames(rows);
+      let arrCsv = csv.split("\r\n");
+      let firstLineTitles = arrCsv[0].split(",");
+      let firstTitle = firstLineTitles[0];
+      let secondTitle = firstLineTitles[1];
+      let thirdTitle = firstLineTitles[2];
+      let objCSV = {};
+      let objCSVArr = [];
+
+      for (let i = 1; i < arrCsv.length; i++) {
+        let row = arrCsv[i].split(",");
+
+        objCSV[firstTitle] = row[0];
+        objCSV[secondTitle] = row[1];
+        objCSV[thirdTitle] = row[2];
+
+        objCSVArr.push(objCSV);
+        objCSV = {};
+      }
+      //console.log(objCSVArr);
+
+      setMovieActorsNames(objCSVArr);
     }
     getData();
   }, []);
@@ -119,7 +168,7 @@ export default function MovieDetailsPage() {
           <ul>
             {resultMovieActorRoles.map((movie, index) => (
               <li key={index}>
-                <div style={{ color: "purple" }}>
+                <div style={{ color: "orange" }}>
                   Actor name: <br />
                   {movie.actorName}
                 </div>
