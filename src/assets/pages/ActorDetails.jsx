@@ -82,34 +82,38 @@ export default function ActorDetailsPage() {
     resultActorDetailsRoles
   );
 
-  // let renderResult;
-
-  // if (resultActorRolesMovies) {
-  //   renderResult = resultActorRolesMovies.map((item, index) => (
-  //     <li key={index}>
-  //       Movie: {item.Title} <br />
-  //       Role: {item.Role}
-  //     </li>
-  //   ));
-  // }
+  console.log(resultActorRolesMovies);
 
   return (
     <>
-      <h1>Actor details</h1>
+      <h1>All movies acted in</h1>
       <ul style={{ textAlign: "center", fontSize: "24px" }}>
-        {resultActorRolesMovies &&
+        {resultActorRolesMovies.length != 0 ? (
           resultActorRolesMovies.map((item, index) => (
-            <li key={index}>
-              Movie: {item.Title} <br />
-              Role:
+            <li key={index} style={{ color: "orange" }}>
+              <span style={{ backgroundColor: "red", fontSize: "24px" }}>
+                Movie:
+              </span>
+              {item.Title}
+
+              <div style={{ backgroundColor: "green", fontSize: "24px" }}>
+                Role:
+              </div>
               {item.Role == "null" ? (
-                <div>UnNamed</div>
+                <div style={{ backgroundColor: "green", fontSize: "24px" }}>
+                  UnNamed
+                </div>
               ) : (
-                <div>{item.Role}</div>
+                <div style={{ backgroundColor: "green", fontSize: "24px" }}>
+                  {item.Role}
+                </div>
               )}
             </li>
-          ))}
-        <div>Not Played at any movie</div>
+          ))
+        ) : (
+          <div>Not Played at any movie</div>
+        )}
+
         <Link to=".." relative="path">
           Back
         </Link>

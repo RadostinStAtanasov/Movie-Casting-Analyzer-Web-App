@@ -14,7 +14,7 @@ export default function MoviePage({ id }) {
       const csv = decoder.decode(result.value); // the csv text
       const results = Papa.parse(csv, { header: true }); // object with { data, errors, meta }
       const rows = results.data; // array of objects
-      //console.log(rows);
+      console.log(rows);
       // console.log(csv.split(","));
       setRows(rows);
     }

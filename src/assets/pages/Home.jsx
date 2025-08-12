@@ -156,32 +156,46 @@ export default function HomePage() {
   return (
     <>
       <h1>Home page</h1>
-      <ul>
-        <div style={{ backgroundColor: "green" }}>
-          Top Actor Pair
-          <li>actor 1: {resultTopActors[0]}</li>
-          <li>actor 2: {resultTopActors[1]}</li>
-        </div>
-        <div style={{ backgroundColor: "orange" }}>
-          <span style={{ backgroundColor: "red" }}>List of movie titles:</span>
-          {resultMovieList.map((movie, index) => (
-            <li key={index}>{movie}</li>
-          ))}
-        </div>
-        <li style={{ backgroundColor: "brown" }}>
-          Total shared movies: {resRows.maxCountPairActorsTogether1}
-        </li>
-      </ul>
-      <ul>
-        {/* <span>
-          <strong>All Movies</strong>
-        </span> */}
-        {/* {rows.map((item, index) => (
-          <li style={{ backgroundColor: "purple" }} key={index}>
-            {item.ID} | {item.ActorID} | {item.MovieID} | {item.RoleName}
-          </li>
-        ))} */}
-      </ul>
+      <div>
+        {resultMovieList.length != 0 ? (
+          <div>
+            <div style={{ backgroundColor: "green" }}>
+              Top Actor Pair
+              <li>actor 1: {resultTopActors[0]}</li>
+              <li>actor 2: {resultTopActors[1]}</li>
+            </div>
+            <div style={{ backgroundColor: "brown" }}>
+              Total shared movies: {resRows.maxCountPairActorsTogether1}
+            </div>
+            <div style={{ backgroundColor: "orange" }}>
+              <span style={{ backgroundColor: "red" }}>
+                List of movie titles:
+              </span>
+              <ul>
+                {resultMovieList.map((movie, index) => (
+                  <li key={index}>{movie}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ) : (
+          <div>
+            <div style={{ backgroundColor: "green" }}>
+              Top Actor Pair
+              <li>actor 1: No that kind of pair</li>
+              <li>actor 2: No that kind of pair</li>
+            </div>
+            <div style={{ backgroundColor: "brown" }}>
+              Total shared movies: none
+            </div>
+            <div style={{ backgroundColor: "orange" }}>
+              <span style={{ backgroundColor: "red" }}>
+                List of movie titles: none
+              </span>
+            </div>
+          </div>
+        )}
+      </div>
     </>
   );
 }

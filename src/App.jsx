@@ -1,8 +1,4 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-  useParams,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./assets/pages/Home";
 import MoviePage from "./assets/pages/Movie";
 import ActorPage from "./assets/pages/Actor";
@@ -25,10 +21,6 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const userInfo = {
-    name: "Jonny",
-  };
-
   return (
     <>
       <RouterProvider router={router} />

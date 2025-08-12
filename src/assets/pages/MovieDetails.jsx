@@ -65,7 +65,6 @@ export default function MovieDetailsPage() {
         allMovieActorsAndRoles.actorId = movieActors[i].ActorID;
         allMovieActorsAndRoles.role = movieActors[i].RoleName;
         allMovieActorsAndRolesArr.push(allMovieActorsAndRoles);
-        console.log(allMovieActorsAndRoles);
       }
       allMovieActorsAndRoles = {};
     }
@@ -85,7 +84,6 @@ export default function MovieDetailsPage() {
       const results = Papa.parse(csv, { header: true }); // object with { data, errors, meta }
       const rows = results.data; // array of objects
       //console.log(rows);
-      // console.log(csv.split(","));
       setMovieActorsNames(rows);
     }
     getData();
@@ -96,11 +94,9 @@ export default function MovieDetailsPage() {
       for (let j = 0; j < resultActorsAndRoles.length; j++) {
         if (resultActorsAndRoles[j].actorId == movieActorsNames[i].ID) {
           resultActorsAndRoles[j].actorName = movieActorsNames[i].FullName;
-          console.log(movieActorsNames[i].FullName);
         }
       }
     }
-    console.log(resultActorsAndRoles);
     return resultActorsAndRoles;
   }
 
@@ -113,20 +109,28 @@ export default function MovieDetailsPage() {
     <>
       <h1>Detail Page</h1>
       <div style={{ textAlign: "center" }}>
-        <p>Title: {resultDetailsMovie.Title}</p>
-        <p>Release date: {resultDetailsMovie.ReleaseDate}</p>
-        {/* <p>Cast: {resultDetailsMovie.Roles}</p> */}
-        <p>
+        <div style={{ background: "red" }}>
+          Title: {resultDetailsMovie.Title}
+        </div>
+        <div style={{ background: "green" }}>
+          Release date: {resultDetailsMovie.ReleaseDate}
+        </div>
+        <div>
           <ul>
             {resultMovieActorRoles.map((movie, index) => (
               <li key={index}>
-                Actor name: {movie.actorName} <br />
-                Role:
-                {movie.role == "null" ? (
-                  <div>UnNamed</div>
-                ) : (
-                  <div>{movie.role}</div>
-                )}
+                <div style={{ color: "purple" }}>
+                  Actor name: <br />
+                  {movie.actorName}
+                </div>
+                <div style={{ color: "green" }}>
+                  Role:
+                  {movie.role == "null" ? (
+                    <div style={{ color: "red" }}>UnNamed</div>
+                  ) : (
+                    <div>{movie.role}</div>
+                  )}
+                </div>
               </li>
             ))}
             <li></li>
@@ -134,7 +138,7 @@ export default function MovieDetailsPage() {
           <Link to=".." relative="path">
             Back
           </Link>
-        </p>
+        </div>
       </div>
     </>
   );
