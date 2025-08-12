@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Papa from "papaparse";
 import { Link, useParams } from "react-router-dom";
-import MovieDetailsPage from "./MovieDetails";
 
 export default function MoviePage({ id }) {
   const [rows, setRows] = useState([]);
