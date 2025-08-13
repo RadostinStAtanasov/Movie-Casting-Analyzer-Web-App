@@ -73,31 +73,40 @@ export default function HomePage() {
 
         countPairActorsTogether = 0;
         for (let l = 0; l < rows.length - 1; l++) {
-          checkIsEqualToFirst = +rows[l].ActorID;
-          checkIsEqualToSecond = +rows[l + 1].ActorID;
-          if (
-            firstActorCheck == checkIsEqualToFirst &&
-            secondActorCheck == checkIsEqualToSecond &&
-            rows[l].MovieID == rows[l + 1].MovieID
-          ) {
-            countPairActorsTogether++;
-            if (countPairActorsTogether > maxCountPairActorsTogether) {
-              maxCountPairActorsTogether = countPairActorsTogether;
-              firstActorId = +rows[l].ActorID;
-              secondActorId = +rows[l + 1].ActorID;
-              moviesPlayedTogether.push(+rows[l].MovieID);
+          for (let p = l + 1; p < rows.length; p++) {
+            checkIsEqualToFirst = +rows[l].ActorID; // first
+            checkIsEqualToSecond = +rows[p].ActorID;
+            let checkMovieIDFirst = +rows[l].MovieID;
+            let checkMovieIDSecond = +rows[p].MovieID;
+
+            if (checkMovieIDFirst !== checkMovieIDSecond) {
+              break;
             }
-          } else if (
-            secondActorCheck == checkIsEqualToFirst &&
-            firstActorCheck == checkIsEqualToSecond &&
-            rows[l].MovieID == rows[l + 1].MovieID
-          ) {
-            countPairActorsTogether++;
-            if (countPairActorsTogether > maxCountPairActorsTogether) {
-              maxCountPairActorsTogether = countPairActorsTogether;
-              firstActorId = +rows[l].ActorID;
-              secondActorId = +rows[l + 1].ActorID;
-              moviesPlayedTogether.push(+rows[l].MovieID);
+
+            if (
+              firstActorCheck == checkIsEqualToFirst &&
+              secondActorCheck == checkIsEqualToSecond &&
+              rows[l].MovieID == rows[l + 1].MovieID
+            ) {
+              countPairActorsTogether++;
+              if (countPairActorsTogether > maxCountPairActorsTogether) {
+                maxCountPairActorsTogether = countPairActorsTogether;
+                firstActorId = +rows[l].ActorID;
+                secondActorId = +rows[p].ActorID;
+                moviesPlayedTogether.push(+rows[l].MovieID);
+              }
+            } else if (
+              secondActorCheck == checkIsEqualToFirst &&
+              firstActorCheck == checkIsEqualToSecond &&
+              rows[l].MovieID == rows[l + 1].MovieID
+            ) {
+              countPairActorsTogether++;
+              if (countPairActorsTogether > maxCountPairActorsTogether) {
+                maxCountPairActorsTogether = countPairActorsTogether;
+                firstActorId = +rows[l].ActorID;
+                secondActorId = +rows[l + 1].ActorID;
+                moviesPlayedTogether.push(+rows[l].MovieID);
+              }
             }
           }
         }
