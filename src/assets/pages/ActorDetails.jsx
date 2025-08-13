@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import classes from "./ActorDetails.module.css";
 
 export default function ActorDetailsPage() {
   const params = useParams();
@@ -118,27 +119,20 @@ export default function ActorDetailsPage() {
   return (
     <>
       <h1>All movies acted in</h1>
-      <ul style={{ textAlign: "center", fontSize: "24px" }}>
+      <ul className={classes.ulList}>
         {resultActorRolesMovies.length != 0 ? (
           resultActorRolesMovies.map((item, index) => (
-            <li key={index} style={{ color: "orange" }}>
-              <span style={{ backgroundColor: "red", fontSize: "24px" }}>
-                Movie:
-              </span>
-              {item.Title}
-
-              <div style={{ backgroundColor: "green", fontSize: "24px" }}>
-                Role:
+            <li key={index}>
+              <div className={classes.movieDetailMovie}>
+                <span>Movie </span>
+                <div>{item.Title}</div>
+                <div className={classes.roleChange}>Role</div>
+                {item.Role == "null" ? (
+                  <div>UnNamed</div>
+                ) : (
+                  <div>{item.Role}</div>
+                )}
               </div>
-              {item.Role == "null" ? (
-                <div style={{ backgroundColor: "green", fontSize: "24px" }}>
-                  UnNamed
-                </div>
-              ) : (
-                <div style={{ backgroundColor: "green", fontSize: "24px" }}>
-                  {item.Role}
-                </div>
-              )}
             </li>
           ))
         ) : (
@@ -146,7 +140,7 @@ export default function ActorDetailsPage() {
         )}
 
         <Link to=".." relative="path">
-          Back
+          <button>Back</button>
         </Link>
       </ul>
     </>

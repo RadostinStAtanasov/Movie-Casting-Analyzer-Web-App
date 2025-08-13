@@ -209,19 +209,25 @@ export default function HomePage() {
 
   return (
     <>
-      <h1 className={classes.title}>Home page</h1>
-      <div>
+      <h1 className={classes.title}>Movie Casting Analyze Web </h1>
+
+      <div className={classes.container}>
         {resultMovieList.length != 0 ? (
           <div>
-            <div>
-              Top Actor Pair
-              <li>actor 1: {resultTopActors[0]}</li>
-              <li>actor 2: {resultTopActors[1]}</li>
+            <div className={classes.topActorPairContainer}>
+              <div>Top Actor Pair</div>
+              <li>
+                <strong>Actor 1:</strong> {resultTopActors[0]}
+              </li>
+              <li>
+                <strong>Actor 2:</strong> {resultTopActors[1]}
+              </li>
             </div>
-            <div>
-              Total shared movies: {resRows.maxCountPairActorsTogether1}
+            <div className={classes.totalSharedMovies}>
+              <strong>Total shared movies: </strong>
+              <span>{resRows.maxCountPairActorsTogether1}</span>
             </div>
-            <div>
+            <div className={classes.listOfMovieTitles}>
               <span>List of movie titles:</span>
               <ul>
                 {resultMovieList.map((movie, index) => (
@@ -231,15 +237,23 @@ export default function HomePage() {
             </div>
           </div>
         ) : (
-          <div>
-            <div>
-              Top Actor Pair
-              <li>actor 1: No that kind of pair</li>
-              <li>actor 2: No that kind of pair</li>
+          <div className={classes.container}>
+            <div className={classes.topActorPairContainer}>
+              <div>Top Actor Pair</div> <br />
+              <li>
+                <strong>actor 1:</strong> No that kind of pair actors
+              </li>
+              <li>
+                <strong>actor 2:</strong> No that kind of pair actors
+              </li>
             </div>
-            <div>Total shared movies: none</div>
-            <div>
-              <span>List of movie titles: none</span>
+            <div className={classes.totalSharedMovies}>
+              <strong>Total shared movies: </strong>
+              none
+            </div>
+            <div className={classes.listOfMovieTitles}>
+              <strong>List of movie titles: </strong>
+              none
             </div>
           </div>
         )}

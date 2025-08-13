@@ -19,3 +19,7 @@ ul {
     gap: 25px;
     text-align: center;
 }
+
+.movieDetailMovie {
+    background-color: red;
+}

@@ -1,5 +1,5 @@
 .header {
-  max-width: 60rem;
+  /* max-width: 60rem;
   margin: auto;
   padding: 2rem;
   display: flex;
@@ -7,17 +7,28 @@
   border: none;
   border-radius: 150px 1px;
   background: gold;
+  margin-bottom: 50px; */
 
 }
 
 nav ul {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   width: 880px;
+   max-width: 60rem;
+  margin: auto;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  border: none;
+  border-radius: 150px 1px;
+  background: gold;
+  margin-bottom: 50px;
 }
 
 .list {
   display: flex;
+  justify-content: space-evenly;
   list-style: none;
   gap: 1rem;
 }

@@ -157,18 +157,23 @@ export default function MovieDetailsPage() {
 
   return (
     <>
-      <h1>Detail Page</h1>
+      <h1>Movie Details</h1>
       <div className={classes.centerText}>
-        <h1>Title: {resultDetailsMovie.Title}</h1>
-        <div>{/* <img src={picMovie} alt="" /> */}</div>
-        <h2>Release date: {resultDetailsMovie.ReleaseDate}</h2>
-        <div>
+        <div className={classes.title}>
+          <h2>Title </h2>
+          <div>{resultDetailsMovie.Title}</div>
+        </div>
+        <div className={classes.releaseDate}>
+          <h2>Release date </h2>
+          <div className="">{resultDetailsMovie.ReleaseDate}</div>
+        </div>
+        <div className={classes.containerActors}>
           <ul className={classes.ulList}>
-            <span>Actors:</span>
+            <span>Actors</span>
             {resultMovieActorRoles.map((movie, index) => (
               <li key={index}>
-                <div style={{ color: "orange" }}>{movie.actorName}</div>
-                <div style={{ color: "green" }}>
+                <div>{movie.actorName}</div>
+                <div>
                   Role:
                   {movie.role == "null" ? (
                     <div style={{ color: "red" }}>UnNamed</div>

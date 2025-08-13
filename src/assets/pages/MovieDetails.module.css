@@ -1,7 +1,18 @@
+h1 {
+  margin-bottom: 50px;
+  font-size: 38px;
+}
+
+h2 {
+  font-size: 28px;
+  color: orange;
+}
+
 button {
   transition-duration: 0.4s;
   border-radius: 3px;
-  width: 100px;
+  width: 250px;
+  height: 50px;
   border: none;
   align-items: center;
 }
@@ -13,13 +24,55 @@ button:hover {
 
 .centerText {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .ulList  {
   display: flex;
   flex-direction: column;
+  padding: 0;
+  list-style: none;
+  background-color:rgb(61, 34, 34);
+  border-radius: 15px 45px;
+  /* border: 1px solid red; */
+}
+
+.releaseDate {
+   background-color:rgb(61, 34, 34);
+  border-radius: 15px 45px;
+  border: 1px solid ridge;
+  width: 500px;
+}
+
+.title {
+    background-color:rgb(61, 34, 34);
+  border-radius: 15px 45px;
+  border: 1px solid ridge;
+  width: 300px;
+  margin-bottom: 15px;
 }
 
 span {
   font-size: 32px;
+  color: orange;
+}
+
+a {
+  text-align: center;
+}
+
+.containerActors {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+li div {
+  color: orange;
+}
+
+li div:nth-child(1) {
+  color: whitesmoke;
 }

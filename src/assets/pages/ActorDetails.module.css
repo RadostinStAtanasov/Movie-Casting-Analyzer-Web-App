@@ -1,0 +1,44 @@
+.ulList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+button {
+  transition-duration: 0.4s;
+  border-radius: 3px;
+  width: 250px;
+  height: 50px;
+  border: none;
+  align-items: center;
+}
+
+button:hover {
+  background-color: red; /* Green */
+  color: white;
+}
+
+li span {
+    color:orange;
+    margin-bottom: 10px;
+}
+
+.roleChange {
+    color: orange;
+    font-size: 28px;
+}
+
+.movieDetailMovie {
+    background-color: rgb(61, 34, 34);
+    border-radius: 15px 40px;
+    /* border: 1px solid brown; */
+
+}
+.movieDetailMovie div:nth-child(2) {
+  color: white;
+}
+
+.movieDetailMovie div:nth-child(4) {
+  color: white;
+}
