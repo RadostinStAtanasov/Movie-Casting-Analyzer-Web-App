@@ -1,0 +1,21 @@
+
+a {
+    display: flex;
+    flex-direction: column;
+}
+
+
+img {
+    max-width: 350px;
+    height: 400px;
+
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    text-align: center;
+}

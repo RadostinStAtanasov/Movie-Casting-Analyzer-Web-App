@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import classes from "./Actor.module.css";
+import { IMAGES_ACTORS } from "../util/generateImages";
 
 export default function ActorPage() {
   const [rows, setRows] = useState([]);
@@ -38,11 +40,16 @@ export default function ActorPage() {
 
   return (
     <div className="app">
-      <h1>Hello from Actors</h1>
-      <ul style={{ textAlign: "center", fontSize: "28px" }}>
+      <h1>All Actors</h1>
+      <ul>
         {rows.map((item, index) => (
           <li key={index}>
-            <Link to={`/actors/${item.ID}`}>{item.FullName}</Link>
+            <div className={classes.images}>
+              <Link to={`/actors/${item.ID}`}>
+                <img src={IMAGES_ACTORS[index].image} alt="theRock" />
+                {item.FullName}
+              </Link>
+            </div>
           </li>
         ))}
       </ul>

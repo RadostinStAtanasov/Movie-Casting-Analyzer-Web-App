@@ -1,0 +1,25 @@
+button {
+  transition-duration: 0.4s;
+  border-radius: 3px;
+  width: 100px;
+  border: none;
+  align-items: center;
+}
+
+button:hover {
+  background-color: red; /* Green */
+  color: white;
+}
+
+.centerText {
+  text-align: center;
+}
+
+.ulList  {
+  display: flex;
+  flex-direction: column;
+}
+
+span {
+  font-size: 32px;
+}

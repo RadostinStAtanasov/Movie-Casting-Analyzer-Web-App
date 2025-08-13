@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import classes from "./Home.module.css";
 
 export default function HomePage() {
   const [rows, setRows] = useState([]);
@@ -208,22 +209,20 @@ export default function HomePage() {
 
   return (
     <>
-      <h1>Home page</h1>
+      <h1 className={classes.title}>Home page</h1>
       <div>
         {resultMovieList.length != 0 ? (
           <div>
-            <div style={{ backgroundColor: "green" }}>
+            <div>
               Top Actor Pair
               <li>actor 1: {resultTopActors[0]}</li>
               <li>actor 2: {resultTopActors[1]}</li>
             </div>
-            <div style={{ backgroundColor: "brown" }}>
+            <div>
               Total shared movies: {resRows.maxCountPairActorsTogether1}
             </div>
-            <div style={{ backgroundColor: "orange" }}>
-              <span style={{ backgroundColor: "red" }}>
-                List of movie titles:
-              </span>
+            <div>
+              <span>List of movie titles:</span>
               <ul>
                 {resultMovieList.map((movie, index) => (
                   <li key={index}>{movie}</li>
@@ -233,18 +232,14 @@ export default function HomePage() {
           </div>
         ) : (
           <div>
-            <div style={{ backgroundColor: "green" }}>
+            <div>
               Top Actor Pair
               <li>actor 1: No that kind of pair</li>
               <li>actor 2: No that kind of pair</li>
             </div>
-            <div style={{ backgroundColor: "brown" }}>
-              Total shared movies: none
-            </div>
-            <div style={{ backgroundColor: "orange" }}>
-              <span style={{ backgroundColor: "red" }}>
-                List of movie titles: none
-              </span>
+            <div>Total shared movies: none</div>
+            <div>
+              <span>List of movie titles: none</span>
             </div>
           </div>
         )}

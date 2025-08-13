@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import classes from "./MovieDetails.module.css";
 
 export default function MovieDetailsPage() {
   const params = useParams();
@@ -157,21 +158,16 @@ export default function MovieDetailsPage() {
   return (
     <>
       <h1>Detail Page</h1>
-      <div style={{ textAlign: "center" }}>
-        <div style={{ background: "red" }}>
-          Title: {resultDetailsMovie.Title}
-        </div>
-        <div style={{ background: "green" }}>
-          Release date: {resultDetailsMovie.ReleaseDate}
-        </div>
+      <div className={classes.centerText}>
+        <h1>Title: {resultDetailsMovie.Title}</h1>
+        <div>{/* <img src={picMovie} alt="" /> */}</div>
+        <h2>Release date: {resultDetailsMovie.ReleaseDate}</h2>
         <div>
-          <ul>
+          <ul className={classes.ulList}>
+            <span>Actors:</span>
             {resultMovieActorRoles.map((movie, index) => (
               <li key={index}>
-                <div style={{ color: "orange" }}>
-                  Actor name: <br />
-                  {movie.actorName}
-                </div>
+                <div style={{ color: "orange" }}>{movie.actorName}</div>
                 <div style={{ color: "green" }}>
                   Role:
                   {movie.role == "null" ? (
@@ -182,10 +178,9 @@ export default function MovieDetailsPage() {
                 </div>
               </li>
             ))}
-            <li></li>
           </ul>
           <Link to=".." relative="path">
-            Back
+            <button>Back</button>
           </Link>
         </div>
       </div>

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-// Papa from "papaparse";
 import { Link } from "react-router-dom";
+
+import classes from "./Movie.module.css";
+import { IMAGES_MOVIES } from "../util/generateImages";
 
 export default function MoviePage({ id }) {
   const [rows, setRows] = useState([]);
@@ -31,7 +33,6 @@ export default function MoviePage({ id }) {
         objCSVArr.push(objCSV);
         objCSV = {};
       }
-      //console.log(objCSVArr);
 
       setRows(objCSVArr);
     }
@@ -41,10 +42,15 @@ export default function MoviePage({ id }) {
   return (
     <div className="app">
       <h1>All Movies</h1>
-      <ul style={{ textAlign: "center", fontSize: "24px" }}>
+      <ul>
         {rows.map((item, index) => (
           <li key={index}>
-            <Link to={`/movies/${item.ID}`}>{item.Title}</Link>
+            <div className={classes.images}>
+              <Link to={`/movies/${item.ID}`}>
+                <img src={IMAGES_MOVIES[index].image} alt="" />
+                {item.Title}
+              </Link>
+            </div>
           </li>
         ))}
       </ul>
