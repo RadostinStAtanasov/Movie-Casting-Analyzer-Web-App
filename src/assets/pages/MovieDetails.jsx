@@ -1,6 +1,11 @@
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import classes from "./MovieDetails.module.css";
+import {
+  detailsForMovie,
+  movieAllActors,
+  takeActorsNames,
+} from "../util/functionsProcessing";
 
 export default function MovieDetailsPage() {
   const params = useParams();
@@ -40,19 +45,6 @@ export default function MovieDetailsPage() {
     getData();
   }, []);
 
-  function detailsForMovie(rows, id) {
-    let movieDetails = {};
-
-    for (let i = 0; i < rows.length; i++) {
-      if (+rows[i].ID == id) {
-        movieDetails.Id = rows[i].Id;
-        movieDetails.Title = rows[i].Title;
-        movieDetails.ReleaseDate = rows[i].ReleaseDate;
-      }
-    }
-    return movieDetails;
-  }
-
   const resultDetailsMovie = detailsForMovie(rows, id);
 
   useEffect(() => {
@@ -89,22 +81,6 @@ export default function MovieDetailsPage() {
     getData();
   }, []);
 
-  function movieAllActors(movieActors, id) {
-    let allMovieActorsAndRoles = {};
-    let allMovieActorsAndRolesArr = [];
-
-    for (let i = 0; i < movieActors.length; i++) {
-      if (movieActors[i].MovieID == id) {
-        allMovieActorsAndRoles.actorId = movieActors[i].ActorID;
-        allMovieActorsAndRoles.role = movieActors[i].RoleName;
-        allMovieActorsAndRolesArr.push(allMovieActorsAndRoles);
-      }
-      allMovieActorsAndRoles = {};
-    }
-
-    return allMovieActorsAndRolesArr;
-  }
-
   const resultActorsAndRoles = movieAllActors(movieActorsRoles, id);
 
   useEffect(() => {
@@ -138,17 +114,6 @@ export default function MovieDetailsPage() {
     }
     getData();
   }, []);
-
-  function takeActorsNames(movieActorsNames, resultActorsAndRoles) {
-    for (let i = 0; i < movieActorsNames.length; i++) {
-      for (let j = 0; j < resultActorsAndRoles.length; j++) {
-        if (resultActorsAndRoles[j].actorId == movieActorsNames[i].ID) {
-          resultActorsAndRoles[j].actorName = movieActorsNames[i].FullName;
-        }
-      }
-    }
-    return resultActorsAndRoles;
-  }
 
   const resultMovieActorRoles = takeActorsNames(
     movieActorsNames,

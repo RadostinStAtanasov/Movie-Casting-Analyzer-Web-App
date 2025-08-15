@@ -1,6 +1,10 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import classes from "./ActorDetails.module.css";
+import {
+  actorAllMoviePrayed,
+  getMoviesInActorDetails,
+} from "../util/functionsProcessing";
 
 export default function ActorDetailsPage() {
   const params = useParams();
@@ -44,22 +48,6 @@ export default function ActorDetailsPage() {
     getData();
   }, []);
 
-  function actorAllMoviePrayed(rows, id) {
-    let actorAllMoviesAndRoles = [];
-    let actorMovieRoles = {};
-
-    for (let i = 0; i < rows.length; i++) {
-      if (rows[i].ActorID == id) {
-        actorMovieRoles.movieId = rows[i].MovieID;
-        actorMovieRoles.roleName = rows[i].RoleName;
-        actorAllMoviesAndRoles.push(actorMovieRoles);
-      }
-      actorMovieRoles = {};
-    }
-
-    return actorAllMoviesAndRoles;
-  }
-
   const resultActorDetailsRoles = actorAllMoviePrayed(rows, id);
 
   useEffect(() => {
@@ -93,23 +81,6 @@ export default function ActorDetailsPage() {
     }
     getData();
   }, []);
-
-  function getMoviesInActorDetails(movies, resultActorDetailsRoles) {
-    let moviesActorActedAndRoles = [];
-    let actorMoviesAndRoles = {};
-
-    for (let i = 0; i < movies.length; i++) {
-      for (let j = 0; j < resultActorDetailsRoles.length; j++) {
-        if (+movies[i].ID == resultActorDetailsRoles[j].movieId) {
-          actorMoviesAndRoles.Title = movies[i].Title;
-          actorMoviesAndRoles.Role = resultActorDetailsRoles[j].roleName;
-          moviesActorActedAndRoles.push(actorMoviesAndRoles);
-        }
-        actorMoviesAndRoles = {};
-      }
-    }
-    return moviesActorActedAndRoles;
-  }
 
   const resultActorRolesMovies = getMoviesInActorDetails(
     movies,

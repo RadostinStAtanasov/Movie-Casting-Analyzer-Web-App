@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
 import classes from "./Home.module.css";
+import {
+  listOfMovieTitles,
+  getTopactorsNames,
+  topActorPair,
+} from "../util/functionsProcessing";
 
 export default function HomePage() {
   const [rows, setRows] = useState([]);
@@ -40,84 +45,6 @@ export default function HomePage() {
     getData();
   }, []);
 
-  function topActorPair(rows) {
-    let firstActorCheck;
-    let secondActorCheck;
-    let countPairActorsTogether = 0;
-    let maxCountPairActorsTogether = 0;
-    let firstActorId = firstActorCheck;
-    let secondActorId = secondActorCheck;
-    let moviesPlayedTogether = [];
-    let checkIsEqualToFirst;
-    let checkIsEqualToSecond;
-    let result = {};
-
-    for (let i = 0; i < rows.length; i++) {
-      firstActorCheck = +rows[i].ActorID; // first Actor id
-      let firstActorMovieID = +rows[i].MovieID;
-
-      if (moviesPlayedTogether.length == 1) {
-        moviesPlayedTogether = [];
-        firstActorId = null;
-        secondActorId = null;
-        maxCountPairActorsTogether = 0;
-      }
-
-      for (let j = i + 1; j < rows.length; j++) {
-        secondActorCheck = +rows[j].ActorID; // second actor id
-        let secondActorMovieID = +rows[j].MovieID;
-
-        if (firstActorMovieID !== secondActorMovieID) {
-          break;
-        }
-
-        countPairActorsTogether = 0;
-        for (let l = 0; l < rows.length - 1; l++) {
-          for (let p = l + 1; p < rows.length; p++) {
-            checkIsEqualToFirst = +rows[l].ActorID; // first
-            checkIsEqualToSecond = +rows[p].ActorID;
-            let checkMovieIDFirst = +rows[l].MovieID;
-            let checkMovieIDSecond = +rows[p].MovieID;
-
-            if (checkMovieIDFirst !== checkMovieIDSecond) {
-              break;
-            }
-
-            if (
-              firstActorCheck == checkIsEqualToFirst &&
-              secondActorCheck == checkIsEqualToSecond &&
-              rows[l].MovieID == rows[l + 1].MovieID
-            ) {
-              countPairActorsTogether++;
-              if (countPairActorsTogether > maxCountPairActorsTogether) {
-                maxCountPairActorsTogether = countPairActorsTogether;
-                firstActorId = +rows[l].ActorID;
-                secondActorId = +rows[p].ActorID;
-                moviesPlayedTogether.push(+rows[l].MovieID);
-              }
-            } else if (
-              secondActorCheck == checkIsEqualToFirst &&
-              firstActorCheck == checkIsEqualToSecond &&
-              rows[l].MovieID == rows[l + 1].MovieID
-            ) {
-              countPairActorsTogether++;
-              if (countPairActorsTogether > maxCountPairActorsTogether) {
-                maxCountPairActorsTogether = countPairActorsTogether;
-                firstActorId = +rows[l].ActorID;
-                secondActorId = +rows[l + 1].ActorID;
-                moviesPlayedTogether.push(+rows[l].MovieID);
-              }
-            }
-          }
-        }
-      }
-    }
-    result.firstActor = firstActorId;
-    result.secondActor = secondActorId;
-    result.moviesPlayedTogether1 = moviesPlayedTogether;
-    result.maxCountPairActorsTogether1 = maxCountPairActorsTogether;
-    return result;
-  }
   const resRows = topActorPair(rows);
 
   useEffect(() => {
@@ -153,18 +80,6 @@ export default function HomePage() {
     getData();
   }, []);
 
-  function getTopactorsNames(resRows, actors) {
-    let topActors = [];
-
-    for (let i = 0; i < actors.length; i++) {
-      if (actors[i].ID == resRows.firstActor) {
-        topActors.push(actors[i].FullName);
-      } else if (+actors[i].ID == resRows.secondActor) {
-        topActors.push(actors[[i]].FullName);
-      }
-    }
-    return topActors;
-  }
   const resultTopActors = getTopactorsNames(resRows, actors);
 
   useEffect(() => {
@@ -198,21 +113,6 @@ export default function HomePage() {
     }
     getData();
   }, []);
-
-  function listOfMovieTitles(listMoviesTitles, resRows) {
-    let listMovie = [];
-
-    for (let i = 0; i < listMoviesTitles.length; i++) {
-      for (let j = 0; j < resRows.moviesPlayedTogether1.length; j++) {
-        let movieCheck = resRows.moviesPlayedTogether1[j];
-        if (listMoviesTitles[i].ID == movieCheck) {
-          listMovie.push(listMoviesTitles[i].Title);
-        }
-      }
-    }
-    //console.log(listMovie);
-    return listMovie;
-  }
 
   let resultMovieList = listOfMovieTitles(listMoviesTitles, resRows);
 
