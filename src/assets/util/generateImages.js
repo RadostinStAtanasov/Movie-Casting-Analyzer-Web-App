@@ -74,6 +74,11 @@ import image47a from "../images/actors/47.jpg";
 import image48a from "../images/actors/48.jpg";
 import image49a from "../images/actors/49.jpg";
 import image50a from "../images/actors/50.jpg";
+import image51a from "../images/actors/50.jpg";
+import image52a from "../images/actors/50.jpg";
+import image53a from "../images/actors/50.jpg";
+import image54a from "../images/actors/50.jpg";
+import image55a from "../images/actors/50.jpg";
 
 export const IMAGES_MOVIES = [
   {
@@ -378,5 +383,20 @@ export const IMAGES_ACTORS = [
   },
   {
     image: image50a,
+  },
+  {
+    image: image51a,
+  },
+  {
+    image: image52a,
+  },
+  {
+    image: image53a,
+  },
+  {
+    image: image54a,
+  },
+  {
+    image: image55a,
   },
 ];

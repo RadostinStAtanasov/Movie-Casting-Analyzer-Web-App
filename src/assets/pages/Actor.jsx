@@ -6,6 +6,8 @@ import { IMAGES_ACTORS } from "../util/generateImages";
 export default function ActorPage() {
   const [rows, setRows] = useState([]);
   const [images, setImages] = useState(IMAGES_ACTORS);
+  const [fullName, setFullName] = useState("");
+  const [birthDate, setBirthDate] = useState("");
 
   useEffect(() => {
     async function getData() {
@@ -70,24 +72,46 @@ export default function ActorPage() {
   // console.log(resultCSVFile);
 
   const deleteActor = (id, rowId) => {
-    // if (window.confirm("Are you sure you want to delete this row?")) {
-    //   // Create a new array to ensure immutability
-    //   const updatedData = rows.filter((row) => row.ID !== id);
-    //   setData(updatedData); // Update state to trigger re-render
-    //   setMessage(`Row with ID ${id} deleted successfully.`);
-    // }
-    const updateData = rows.filter((row) => row.ID !== id);
-    images.splice(rowId, 1);
-    // setImages(images);
-    setRows(updateData);
+    if (window.confirm("Are you sure you want to delete this row?")) {
+      // Create a new array to ensure immutability
+      const updatedData = rows.filter((row) => row.ID !== id);
+      setRows(updatedData); // Update state to trigger re-render
+      images.splice(rowId, 1);
+    }
   };
 
-  console.log(rows);
-  console.log(images);
+  const addActor = () => {
+    const id = rows.length;
+    const actor = { ID: id, FullName: fullName, BirthDate: birthDate };
+
+    setRows([...rows, actor]);
+
+    console.log(actor);
+    console.log(rows);
+  };
 
   return (
     <div className="app">
       <h1>All Actors</h1>
+
+      <label htmlFor="">FullName</label>
+      <input
+        type="text"
+        value={fullName}
+        onChange={(e) => setFullName(e.target.value)}
+      />
+      <br />
+      <label htmlFor="">BirthDate (yyyy-mm-dd)</label>
+      <input
+        type="date"
+        value={birthDate}
+        onChange={(e) => setBirthDate(e.target.value)}
+      />
+      <br />
+      <button type="submit" onClick={addActor}>
+        Add Actor
+      </button>
+
       <ul>
         {rows.length > 0 ? (
           rows.map((item, index) => (
