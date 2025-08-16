@@ -5,6 +5,8 @@ import { IMAGES_ACTORS } from "../util/generateImages";
 
 export default function ActorPage() {
   const [rows, setRows] = useState([]);
+  const [images, setImages] = useState(IMAGES_ACTORS);
+
   useEffect(() => {
     async function getData() {
       const response = await fetch("./actors.csv");
@@ -38,20 +40,72 @@ export default function ActorPage() {
     getData();
   }, []);
 
+  // // Define column headers for CSV
+  // const fileHeaders = ["ID", "FullName", "BirthDate"];
+
+  // // Function to convert JSON to CSV string
+  // function convertJSONToCSV(inputRows, columnHeaders) {
+  //   // Check if JSON data is empty
+  //   if (inputRows.length === 0) {
+  //     return "";
+  //   }
+
+  //   // Create headers string
+  //   const headers = columnHeaders.join(",") + "\n";
+
+  //   // Map JSON data to CSV rows
+  //   const rows = inputRows
+  //     .map((row) => {
+  //       // Map each row to CSV format
+  //       return columnHeaders.map((field) => row[field] || "").join(",");
+  //     })
+  //     .join("\n");
+
+  //   // Combine headers and rows
+  //   return headers + rows;
+  // }
+
+  // const resultCSVFile = convertJSONToCSV(rows, fileHeaders);
+
+  // console.log(resultCSVFile);
+
+  const deleteActor = (id, rowId) => {
+    // if (window.confirm("Are you sure you want to delete this row?")) {
+    //   // Create a new array to ensure immutability
+    //   const updatedData = rows.filter((row) => row.ID !== id);
+    //   setData(updatedData); // Update state to trigger re-render
+    //   setMessage(`Row with ID ${id} deleted successfully.`);
+    // }
+    const updateData = rows.filter((row) => row.ID !== id);
+    images.splice(rowId, 1);
+    // setImages(images);
+    setRows(updateData);
+  };
+
+  console.log(rows);
+  console.log(images);
+
   return (
     <div className="app">
       <h1>All Actors</h1>
       <ul>
-        {rows.map((item, index) => (
-          <li key={index}>
-            <div className={classes.images}>
-              <Link to={`/actors/${item.ID}`}>
-                <img src={IMAGES_ACTORS[index].image} alt="theRock" />
-                {item.FullName}
-              </Link>
-            </div>
-          </li>
-        ))}
+        {rows.length > 0 ? (
+          rows.map((item, index) => (
+            <li key={index}>
+              <div className={classes.images}>
+                <Link to={`/actors/${item.ID}`}>
+                  <img src={IMAGES_ACTORS[index].image} alt="theRock" />
+                  {item.FullName}
+                </Link>
+                <button onClick={() => deleteActor(item.ID, index)}>
+                  Delete
+                </button>
+              </div>
+            </li>
+          ))
+        ) : (
+          <p>No data loaded.</p>
+        )}
       </ul>
     </div>
   );

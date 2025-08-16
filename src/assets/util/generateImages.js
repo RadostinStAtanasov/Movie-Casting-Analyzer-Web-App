@@ -49,6 +49,31 @@ import image22a from "../images/actors/22.jpg";
 import image23a from "../images/actors/23.jpg";
 import image24a from "../images/actors/24.jpg";
 import image25a from "../images/actors/25.jpg";
+import image26a from "../images/actors/26.jpg";
+import image27a from "../images/actors/27.jpg";
+import image28a from "../images/actors/28.jpg";
+import image29a from "../images/actors/29.jpg";
+import image30a from "../images/actors/30.jpg";
+import image31a from "../images/actors/31.jpg";
+import image32a from "../images/actors/32.jpg";
+import image33a from "../images/actors/33.jpg";
+import image34a from "../images/actors/34.jpg";
+import image35a from "../images/actors/35.jpg";
+import image36a from "../images/actors/36.jpg";
+import image37a from "../images/actors/37.jpg";
+import image38a from "../images/actors/38.jpg";
+import image39a from "../images/actors/39.jpg";
+import image40a from "../images/actors/40.jpg";
+import image41a from "../images/actors/41.jpg";
+import image42a from "../images/actors/42.jpg";
+import image43a from "../images/actors/43.jpg";
+import image44a from "../images/actors/44.jpg";
+import image45a from "../images/actors/45.jpg";
+import image46a from "../images/actors/46.jpg";
+import image47a from "../images/actors/47.jpg";
+import image48a from "../images/actors/48.jpg";
+import image49a from "../images/actors/49.jpg";
+import image50a from "../images/actors/50.jpg";
 
 export const IMAGES_MOVIES = [
   {
@@ -280,78 +305,78 @@ export const IMAGES_ACTORS = [
     image: image25a,
   },
   {
-    image: image1a,
+    image: image26a,
   },
   {
-    image: image2a,
+    image: image27a,
   },
   {
-    image: image3a,
+    image: image28a,
   },
   {
-    image: image4a,
+    image: image29a,
   },
   {
-    image: image5a,
+    image: image30a,
   },
   {
-    image: image6a,
+    image: image31a,
   },
   {
-    image: image7a,
+    image: image32a,
   },
   {
-    image: image8a,
+    image: image33a,
   },
   {
-    image: image9a,
+    image: image34a,
   },
   {
-    image: image10a,
+    image: image35a,
   },
   {
-    image: image11a,
+    image: image36a,
   },
   {
-    image: image12a,
+    image: image37a,
   },
   {
-    image: image13a,
+    image: image38a,
   },
   {
-    image: image14a,
+    image: image39a,
   },
   {
-    image: image15a,
+    image: image40a,
   },
   {
-    image: image16a,
+    image: image41a,
   },
   {
-    image: image17a,
+    image: image42a,
   },
   {
-    image: image18a,
+    image: image43a,
   },
   {
-    image: image19a,
+    image: image44a,
   },
   {
-    image: image20a,
+    image: image45a,
   },
   {
-    image: image21a,
+    image: image46a,
   },
   {
-    image: image22a,
+    image: image47a,
   },
   {
-    image: image23a,
+    image: image48a,
   },
   {
-    image: image24a,
+    image: image49a,
   },
   {
-    image: image25a,
+    image: image50a,
   },
 ];
