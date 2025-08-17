@@ -2,6 +2,7 @@
 a {
     display: flex;
     flex-direction: column;
+    text-decoration: none;
 }
 
 
@@ -9,6 +10,12 @@ img {
     max-width: 350px;
     height: 400px;
 
+}
+.images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
 ul {
@@ -65,4 +72,18 @@ ul {
 
 .inputForm label {
     margin-left: 10px;
+}
+
+.updateActor {
+      transition-duration: 0.4s;
+  border-radius: 3px;
+  width: 250px;
+  height: 25px;
+  border: none;
+  align-items: center;
+}
+
+.updateActor:hover {
+  background-color: green; /* Green */
+  color: white;
 }

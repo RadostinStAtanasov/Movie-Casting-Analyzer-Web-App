@@ -36,13 +36,10 @@ export default function ActorPage() {
         objCSVArr.push(objCSV);
         objCSV = {};
       }
-      //console.log(objCSVArr);
 
       setRows(objCSVArr);
       setImages([...IMAGES_ACTORS]);
     }
-    console.log(images);
-
     getData();
   }, []);
 
@@ -53,7 +50,6 @@ export default function ActorPage() {
       setRows(updatedData); // Update state to trigger re-render
       images.splice(rowId, 1);
     }
-    console.log(images);
   };
 
   const addActor = () => {
@@ -66,12 +62,11 @@ export default function ActorPage() {
 
     setRows([actor, ...rows]);
     setImages([newPictureActor, ...images]);
-    // IMAGES_ACTORS.unshift(newPictureActor);
     setFullName("");
     setBirthDate("");
-    console.log(images);
-    console.log(rows);
   };
+
+  const updateActor = () => {};
 
   return (
     <div className="app">
@@ -118,6 +113,14 @@ export default function ActorPage() {
                 >
                   Delete Actor
                 </button>
+                <Link to={`/actors/update/${item.ID}`}>
+                  <button
+                    className={classes.updateActor}
+                    onClick={() => updateActor(item.ID)}
+                  >
+                    Update Actor
+                  </button>
+                </Link>
               </div>
             </li>
           ))
