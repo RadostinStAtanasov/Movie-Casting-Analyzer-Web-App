@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 import { Link } from "react-router-dom";
 import classes from "./Actor.module.css";
 import { IMAGES_ACTORS } from "../util/generateImages";
@@ -6,7 +6,7 @@ import newActorImage from "../images/newActorImage.jpg";
 
 export default function ActorPage() {
   const [rows, setRows] = useState([]);
-  const [images, setImages] = useState(IMAGES_ACTORS);
+  const [images, setImages] = useState([...IMAGES_ACTORS]);
   const [fullName, setFullName] = useState("");
   const [birthDate, setBirthDate] = useState("");
 
@@ -39,38 +39,12 @@ export default function ActorPage() {
       //console.log(objCSVArr);
 
       setRows(objCSVArr);
+      setImages([...IMAGES_ACTORS]);
     }
+    console.log(images);
+
     getData();
   }, []);
-
-  // // Define column headers for CSV
-  // const fileHeaders = ["ID", "FullName", "BirthDate"];
-
-  // // Function to convert JSON to CSV string
-  // function convertJSONToCSV(inputRows, columnHeaders) {
-  //   // Check if JSON data is empty
-  //   if (inputRows.length === 0) {
-  //     return "";
-  //   }
-
-  //   // Create headers string
-  //   const headers = columnHeaders.join(",") + "\n";
-
-  //   // Map JSON data to CSV rows
-  //   const rows = inputRows
-  //     .map((row) => {
-  //       // Map each row to CSV format
-  //       return columnHeaders.map((field) => row[field] || "").join(",");
-  //     })
-  //     .join("\n");
-
-  //   // Combine headers and rows
-  //   return headers + rows;
-  // }
-
-  // const resultCSVFile = convertJSONToCSV(rows, fileHeaders);
-
-  // console.log(resultCSVFile);
 
   const deleteActor = (id, rowId) => {
     if (window.confirm("Are you sure you want to delete this row?")) {
@@ -78,11 +52,8 @@ export default function ActorPage() {
       const updatedData = rows.filter((row) => row.ID !== id);
       setRows(updatedData); // Update state to trigger re-render
       images.splice(rowId, 1);
-
-      // console.log(actor);
-      console.log(rows);
-      console.log(IMAGES_ACTORS);
     }
+    console.log(images);
   };
 
   const addActor = () => {
@@ -94,13 +65,12 @@ export default function ActorPage() {
     const newPictureActor = { image: newActorImage };
 
     setRows([actor, ...rows]);
-    IMAGES_ACTORS.unshift(newPictureActor);
+    setImages([newPictureActor, ...images]);
+    // IMAGES_ACTORS.unshift(newPictureActor);
     setFullName("");
     setBirthDate("");
-
-    // console.log(actor);
-    // console.log(rows);
-    // console.log(IMAGES_ACTORS);
+    console.log(images);
+    console.log(rows);
   };
 
   return (
@@ -134,9 +104,9 @@ export default function ActorPage() {
                 <Link to={`/actors/${item.ID}`}>
                   <img
                     src={
-                      index < IMAGES_ACTORS.length
-                        ? IMAGES_ACTORS[index].image
-                        : IMAGES_ACTORS[index - index].image
+                      index < images.length
+                        ? images[index].image
+                        : images[index - index].image
                     }
                     alt="theRock"
                   />
