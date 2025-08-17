@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import classes from "./Actor.module.css";
 import { IMAGES_ACTORS } from "../util/generateImages";
+import newActorImage from "../images/newActorImage.jpg";
 
 export default function ActorPage() {
   const [rows, setRows] = useState([]);
-  const [images, setImages] = useState(IMAGES_ACTORS);
+  const [images, setImages] = useState([IMAGES_ACTORS]);
   const [fullName, setFullName] = useState("");
   const [birthDate, setBirthDate] = useState("");
 
@@ -83,11 +84,17 @@ export default function ActorPage() {
   const addActor = () => {
     const id = rows.length;
     const actor = { ID: id, FullName: fullName, BirthDate: birthDate };
+    const newPictureActor = { image: newActorImage };
 
-    setRows([...rows, actor]);
+    setRows([actor, ...rows]);
+    // setImages([newPictureActor, ...IMAGES_ACTORS]);
+    IMAGES_ACTORS.unshift(newPictureActor);
+    setFullName("");
+    setBirthDate("");
 
-    console.log(actor);
+    //console.log(actor);
     console.log(rows);
+    console.log(IMAGES_ACTORS);
   };
 
   return (
@@ -118,7 +125,14 @@ export default function ActorPage() {
             <li key={index}>
               <div className={classes.images}>
                 <Link to={`/actors/${item.ID}`}>
-                  <img src={IMAGES_ACTORS[index].image} alt="theRock" />
+                  <img
+                    src={
+                      index < IMAGES_ACTORS.length
+                        ? IMAGES_ACTORS[index].image
+                        : IMAGES_ACTORS[index - index].image
+                    }
+                    alt="theRock"
+                  />
                   {item.FullName}
                 </Link>
                 <button onClick={() => deleteActor(item.ID, index)}>
