@@ -86,6 +86,9 @@ export default function ActorPage() {
   };
 
   const addActor = () => {
+    if (fullName == "" || birthDate == "") {
+      return;
+    }
     const id = rows.length + 1;
     const actor = { ID: id, FullName: fullName, BirthDate: birthDate };
     const newPictureActor = { image: newActorImage };
@@ -95,15 +98,15 @@ export default function ActorPage() {
     setFullName("");
     setBirthDate("");
 
-    console.log(actor);
-    console.log(rows);
-    console.log(IMAGES_ACTORS);
+    // console.log(actor);
+    // console.log(rows);
+    // console.log(IMAGES_ACTORS);
   };
 
   return (
     <div className="app">
       <h1>All Actors</h1>
-      <form>
+      <div className={classes.inputForm}>
         <label htmlFor="">FullName: </label>
         <input
           type="text"
@@ -118,10 +121,10 @@ export default function ActorPage() {
           onChange={(e) => setBirthDate(e.target.value)}
         />
         <br />
-        <button type="submit" className="btn" onClick={addActor}>
+        <button type="submit" className={classes.btn} onClick={addActor}>
           Add Actor
         </button>
-      </form>
+      </div>
 
       <ul>
         {rows.length > 0 ? (
