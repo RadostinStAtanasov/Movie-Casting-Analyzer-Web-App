@@ -150,7 +150,7 @@ export default function MovieDetailsPage() {
             ))}
           </ul>
           <Link to=".." relative="path">
-            <button>Back</button>
+            <button className={classes.movieDetails}>Back</button>
           </Link>
         </div>
       </div>

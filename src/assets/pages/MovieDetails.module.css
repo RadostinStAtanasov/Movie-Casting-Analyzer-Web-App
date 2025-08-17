@@ -8,7 +8,7 @@ h2 {
   color: orange;
 }
 
-button {
+.movieDetails {
   transition-duration: 0.4s;
   border-radius: 3px;
   width: 250px;
@@ -17,7 +17,7 @@ button {
   align-items: center;
 }
 
-button:hover {
+.movieDetails:hover {
   background-color: red; /* Green */
   color: white;
 }

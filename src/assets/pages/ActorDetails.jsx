@@ -111,7 +111,7 @@ export default function ActorDetailsPage() {
         )}
 
         <Link to=".." relative="path">
-          <button>Back</button>
+          <button className={classes.detailsMovie}>Back</button>
         </Link>
       </ul>
     </>

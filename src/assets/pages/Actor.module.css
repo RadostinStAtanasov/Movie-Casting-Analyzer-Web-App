@@ -23,3 +23,22 @@ ul {
 .movieDetailMovie {
     background-color: red;
 }
+
+.btn {
+    width: 150px;
+    height: 20px;
+}
+
+.deleteActor {
+  transition-duration: 0.4s;
+  border-radius: 3px;
+  width: 250px;
+  height: 25px;
+  border: none;
+  align-items: center;
+}
+
+.deleteActor:hover {
+  background-color: red; /* Green */
+  color: white;
+}

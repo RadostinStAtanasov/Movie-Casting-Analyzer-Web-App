@@ -5,7 +5,7 @@
 }
 
 
-button {
+.detailsMovie {
   transition-duration: 0.4s;
   border-radius: 3px;
   width: 250px;
@@ -14,7 +14,7 @@ button {
   align-items: center;
 }
 
-button:hover {
+.detailsMovie:hover {
   background-color: red; /* Green */
   color: white;
 }

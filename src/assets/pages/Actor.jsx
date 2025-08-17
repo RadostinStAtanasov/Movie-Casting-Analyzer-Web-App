@@ -6,7 +6,7 @@ import newActorImage from "../images/newActorImage.jpg";
 
 export default function ActorPage() {
   const [rows, setRows] = useState([]);
-  const [images, setImages] = useState([IMAGES_ACTORS]);
+  const [images, setImages] = useState(IMAGES_ACTORS);
   const [fullName, setFullName] = useState("");
   const [birthDate, setBirthDate] = useState("");
 
@@ -78,21 +78,24 @@ export default function ActorPage() {
       const updatedData = rows.filter((row) => row.ID !== id);
       setRows(updatedData); // Update state to trigger re-render
       images.splice(rowId, 1);
+
+      // console.log(actor);
+      console.log(rows);
+      console.log(IMAGES_ACTORS);
     }
   };
 
   const addActor = () => {
-    const id = rows.length;
+    const id = rows.length + 1;
     const actor = { ID: id, FullName: fullName, BirthDate: birthDate };
     const newPictureActor = { image: newActorImage };
 
     setRows([actor, ...rows]);
-    // setImages([newPictureActor, ...IMAGES_ACTORS]);
     IMAGES_ACTORS.unshift(newPictureActor);
     setFullName("");
     setBirthDate("");
 
-    //console.log(actor);
+    console.log(actor);
     console.log(rows);
     console.log(IMAGES_ACTORS);
   };
@@ -100,24 +103,25 @@ export default function ActorPage() {
   return (
     <div className="app">
       <h1>All Actors</h1>
-
-      <label htmlFor="">FullName</label>
-      <input
-        type="text"
-        value={fullName}
-        onChange={(e) => setFullName(e.target.value)}
-      />
-      <br />
-      <label htmlFor="">BirthDate (yyyy-mm-dd)</label>
-      <input
-        type="date"
-        value={birthDate}
-        onChange={(e) => setBirthDate(e.target.value)}
-      />
-      <br />
-      <button type="submit" onClick={addActor}>
-        Add Actor
-      </button>
+      <form>
+        <label htmlFor="">FullName: </label>
+        <input
+          type="text"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+        />
+        <br />
+        <label htmlFor="">BirthDate: </label>
+        <input
+          type="date"
+          value={birthDate}
+          onChange={(e) => setBirthDate(e.target.value)}
+        />
+        <br />
+        <button type="submit" className="btn" onClick={addActor}>
+          Add Actor
+        </button>
+      </form>
 
       <ul>
         {rows.length > 0 ? (
@@ -135,8 +139,11 @@ export default function ActorPage() {
                   />
                   {item.FullName}
                 </Link>
-                <button onClick={() => deleteActor(item.ID, index)}>
-                  Delete
+                <button
+                  className={classes.deleteActor}
+                  onClick={() => deleteActor(item.ID, index)}
+                >
+                  Delete Actor
                 </button>
               </div>
             </li>
