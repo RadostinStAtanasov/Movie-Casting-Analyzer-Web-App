@@ -1,11 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./assets/pages/Home";
-import MoviePage from "./assets/pages/Movie";
-import ActorPage from "./assets/pages/Actor";
+import MoviePage from "./assets/pages/movie/Movie";
+import ActorPage from "./assets/pages/actor/Actor";
 import RootLayout from "./assets/pages/Root";
-import MovieDetailsPage from "./assets/pages/MovieDetails";
-import ActorDetailsPage from "./assets/pages/ActorDetails";
-import ActorUpdatePage from "./assets/pages/ActorUpdate";
+import MovieDetailsPage from "./assets/pages/movie/MovieDetails";
+import ActorDetailsPage from "./assets/pages/actor/ActorDetails";
+import ActorUpdatePage from "./assets/pages/actor/ActorUpdate";
 
 const router = createBrowserRouter([
   {

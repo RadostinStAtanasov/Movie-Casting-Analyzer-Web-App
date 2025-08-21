@@ -1,8 +1,9 @@
-import { useState, useEffect, useReducer } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import classes from "./Actor.module.css";
-import { IMAGES_ACTORS } from "../util/generateImages";
-import newActorImage from "../images/newActorImage.jpg";
+import { IMAGES_ACTORS } from "../../util/generateImages";
+import newActorImage from "../../images/newActorImage.jpg";
+import Papa from "papaparse";
 
 export default function ActorPage() {
   const [rows, setRows] = useState([]);

@@ -1,0 +1,16 @@
+.actorsUpdate {
+    display: flex;
+    flex-direction: column;
+}
+
+.actorContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}

@@ -5,7 +5,7 @@ import {
   detailsForMovie,
   movieAllActors,
   takeActorsNames,
-} from "../util/functionsProcessing";
+} from "../../util/functionsProcessing";
 
 export default function MovieDetailsPage() {
   const params = useParams();

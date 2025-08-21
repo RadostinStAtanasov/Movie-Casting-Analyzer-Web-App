@@ -4,7 +4,7 @@ import classes from "./ActorDetails.module.css";
 import {
   actorAllMoviePrayed,
   getMoviesInActorDetails,
-} from "../util/functionsProcessing";
+} from "../../util/functionsProcessing";
 
 export default function ActorDetailsPage() {
   const params = useParams();

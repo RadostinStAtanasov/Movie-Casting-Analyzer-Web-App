@@ -1,11 +1,37 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import classes from "./Movie.module.css";
-import { IMAGES_MOVIES } from "../util/generateImages";
+import { IMAGES_MOVIES } from "../../util/generateImages";
 
-export default function MoviePage({ id }) {
+export default function MoviePage() {
   const [rows, setRows] = useState([]);
+
+  const [actorss, setActors] = useState([]);
+
+  // useEffect(() => {
+  //   async function getData() {
+  //     let response = await fetch("./actors.csv");
+  //     const reader = response.body.getReader();
+  //     const result = await reader.read(); // raw array
+  //     const decoder = new TextDecoder("utf-8");
+  //     const csv = decoder.decode(result.value); // the csv text
+  //     const results = Papa.parse(csv, { header: true });
+  //     const actors = results.data;
+
+  //     const unparsedResult = Papa.unparse(actors, {
+  //       header: true,
+  //       delimiter: ".",
+  //     });
+  //     console.log(unparsedResult);
+
+  //     console.log(response);
+
+  //     setActors(actors);
+  //   }
+  //   getData();
+  // }, []);
+
+  //console.log(actorss);
 
   useEffect(() => {
     async function getData() {
