@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import classes from "./Actor.module.css";
 import { IMAGES_ACTORS } from "../../util/generateImages";
 import newActorImage from "../../images/newActorImage.jpg";
-import Papa from "papaparse";
+import axios from "axios";
 
 export default function ActorPage() {
   const [rows, setRows] = useState([]);
@@ -11,37 +11,43 @@ export default function ActorPage() {
   const [fullName, setFullName] = useState("");
   const [birthDate, setBirthDate] = useState("");
 
+  // useEffect(() => {
+  //   async function getData() {
+  //     const response = await fetch("./actors.csv");
+  //     const reader = response.body.getReader();
+  //     const result = await reader.read(); // raw array
+  //     const decoder = new TextDecoder("utf-8");
+  //     const csv = decoder.decode(result.value); // the csv text
+
+  //     let arrCsv = csv.split("\r\n");
+  //     let firstLineTitles = arrCsv[0].split(",");
+  //     let firstTitle = firstLineTitles[0];
+  //     let secondTitle = firstLineTitles[1];
+  //     let thirdTitle = firstLineTitles[2];
+  //     let objCSV = {};
+  //     let objCSVArr = [];
+
+  //     for (let i = 1; i < arrCsv.length; i++) {
+  //       let row = arrCsv[i].split(",");
+
+  //       objCSV[firstTitle] = row[0];
+  //       objCSV[secondTitle] = row[1];
+  //       objCSV[thirdTitle] = row[2];
+
+  //       objCSVArr.push(objCSV);
+  //       objCSV = {};
+  //     }
+
+  //     setRows(objCSVArr);
+  //     setImages([...IMAGES_ACTORS]);
+  //   }
+  //   getData();
+  // }, []);
+
   useEffect(() => {
-    async function getData() {
-      const response = await fetch("./actors.csv");
-      const reader = response.body.getReader();
-      const result = await reader.read(); // raw array
-      const decoder = new TextDecoder("utf-8");
-      const csv = decoder.decode(result.value); // the csv text
-
-      let arrCsv = csv.split("\r\n");
-      let firstLineTitles = arrCsv[0].split(",");
-      let firstTitle = firstLineTitles[0];
-      let secondTitle = firstLineTitles[1];
-      let thirdTitle = firstLineTitles[2];
-      let objCSV = {};
-      let objCSVArr = [];
-
-      for (let i = 1; i < arrCsv.length; i++) {
-        let row = arrCsv[i].split(",");
-
-        objCSV[firstTitle] = row[0];
-        objCSV[secondTitle] = row[1];
-        objCSV[thirdTitle] = row[2];
-
-        objCSVArr.push(objCSV);
-        objCSV = {};
-      }
-
-      setRows(objCSVArr);
-      setImages([...IMAGES_ACTORS]);
-    }
-    getData();
+    axios.get("http://localhost:3000/actors").then(function (response) {
+      setRows(response.data);
+    });
   }, []);
 
   const deleteActor = (id, rowId) => {

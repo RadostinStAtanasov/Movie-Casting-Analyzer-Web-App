@@ -5,113 +5,133 @@ import {
   getTopactorsNames,
   topActorPair,
 } from "../util/functionsProcessing";
+import axios from "axios";
 
 export default function HomePage() {
   const [rows, setRows] = useState([]);
   const [actors, setActors] = useState([]);
   const [listMoviesTitles, setListMoviesTitles] = useState([]);
 
+  // useEffect(() => {
+  //   async function getData() {
+  //     const response = await fetch("./roles.csv");
+  //     const reader = response.body.getReader();
+  //     const result = await reader.read(); // raw array
+  //     const decoder = new TextDecoder("utf-8");
+  //     const csv = decoder.decode(result.value); // the csv text
+
+  //     let arrCsv = csv.split("\r\n");
+  //     let firstLineTitles = arrCsv[0].split(",");
+  //     let firstTitle = firstLineTitles[0];
+  //     let secondTitle = firstLineTitles[1];
+  //     let thirdTitle = firstLineTitles[2];
+  //     let forthTitle = firstLineTitles[3];
+  //     let objCSV = {};
+  //     let objCSVArr = [];
+
+  //     for (let i = 1; i < arrCsv.length; i++) {
+  //       let row = arrCsv[i].split(",");
+
+  //       objCSV[firstTitle] = row[0];
+  //       objCSV[secondTitle] = row[1];
+  //       objCSV[thirdTitle] = row[2];
+  //       objCSV[forthTitle] = row[3];
+
+  //       objCSVArr.push(objCSV);
+  //       objCSV = {};
+  //     }
+  //     //console.log(objCSVArr);
+
+  //     setRows(objCSVArr);
+  //   }
+  //   getData();
+  // }, []);
+
   useEffect(() => {
-    async function getData() {
-      const response = await fetch("./roles.csv");
-      const reader = response.body.getReader();
-      const result = await reader.read(); // raw array
-      const decoder = new TextDecoder("utf-8");
-      const csv = decoder.decode(result.value); // the csv text
-      let arrCsv = csv.split("\r\n");
-      let firstLineTitles = arrCsv[0].split(",");
-      let firstTitle = firstLineTitles[0];
-      let secondTitle = firstLineTitles[1];
-      let thirdTitle = firstLineTitles[2];
-      let forthTitle = firstLineTitles[3];
-      let objCSV = {};
-      let objCSVArr = [];
-
-      for (let i = 1; i < arrCsv.length; i++) {
-        let row = arrCsv[i].split(",");
-
-        objCSV[firstTitle] = row[0];
-        objCSV[secondTitle] = row[1];
-        objCSV[thirdTitle] = row[2];
-        objCSV[forthTitle] = row[3];
-
-        objCSVArr.push(objCSV);
-        objCSV = {};
-      }
-      //console.log(objCSVArr);
-
-      setRows(objCSVArr);
-    }
-    getData();
+    axios.get("http://localhost:3000/roles").then(function (response) {
+      setRows(response.data);
+    });
   }, []);
 
   const resRows = topActorPair(rows);
 
+  // useEffect(() => {
+  //   async function getData() {
+  //     const response = await fetch("./actors.csv");
+  //     const reader = response.body.getReader();
+  //     const result = await reader.read(); // raw array
+  //     const decoder = new TextDecoder("utf-8");
+  //     const csv = decoder.decode(result.value); // the csv text
+
+  //     let arrCsv = csv.split("\r\n");
+  //     let firstLineTitles = arrCsv[0].split(",");
+  //     let firstTitle = firstLineTitles[0];
+  //     let secondTitle = firstLineTitles[1];
+  //     let thirdTitle = firstLineTitles[2];
+  //     let objCSV = {};
+  //     let objCSVArr = [];
+
+  //     for (let i = 1; i < arrCsv.length; i++) {
+  //       let row = arrCsv[i].split(",");
+
+  //       objCSV[firstTitle] = row[0];
+  //       objCSV[secondTitle] = row[1];
+  //       objCSV[thirdTitle] = row[2];
+
+  //       objCSVArr.push(objCSV);
+  //       objCSV = {};
+  //     }
+  //     //console.log(objCSVArr);
+
+  //     setActors(objCSVArr);
+  //   }
+  //   getData();
+  // }, []);
+
   useEffect(() => {
-    async function getData() {
-      const response = await fetch("./actors.csv");
-      const reader = response.body.getReader();
-      const result = await reader.read(); // raw array
-      const decoder = new TextDecoder("utf-8");
-      const csv = decoder.decode(result.value); // the csv text
-
-      let arrCsv = csv.split("\r\n");
-      let firstLineTitles = arrCsv[0].split(",");
-      let firstTitle = firstLineTitles[0];
-      let secondTitle = firstLineTitles[1];
-      let thirdTitle = firstLineTitles[2];
-      let objCSV = {};
-      let objCSVArr = [];
-
-      for (let i = 1; i < arrCsv.length; i++) {
-        let row = arrCsv[i].split(",");
-
-        objCSV[firstTitle] = row[0];
-        objCSV[secondTitle] = row[1];
-        objCSV[thirdTitle] = row[2];
-
-        objCSVArr.push(objCSV);
-        objCSV = {};
-      }
-      //console.log(objCSVArr);
-
-      setActors(objCSVArr);
-    }
-    getData();
+    axios.get("http://localhost:3000/actors").then(function (response) {
+      setActors(response.data);
+    });
   }, []);
 
   const resultTopActors = getTopactorsNames(resRows, actors);
 
+  // useEffect(() => {
+  //   async function getData() {
+  //     const response = await fetch("./movies.csv");
+  //     const reader = response.body.getReader();
+  //     const result = await reader.read(); // raw array
+  //     const decoder = new TextDecoder("utf-8");
+  //     const csv = decoder.decode(result.value); // the csv text
+
+  //     let arrCsv = csv.split("\r\n");
+  //     let firstLineTitles = arrCsv[0].split(",");
+  //     let firstTitle = firstLineTitles[0];
+  //     let secondTitle = firstLineTitles[1];
+  //     let thirdTitle = firstLineTitles[2];
+  //     let objCSV = {};
+  //     let objCSVArr = [];
+
+  //     for (let i = 1; i < arrCsv.length; i++) {
+  //       let row = arrCsv[i].split(",");
+
+  //       objCSV[firstTitle] = row[0];
+  //       objCSV[secondTitle] = row[1];
+  //       objCSV[thirdTitle] = row[2];
+
+  //       objCSVArr.push(objCSV);
+  //       objCSV = {};
+  //     }
+  //     //console.log(objCSVArr);
+  //     setListMoviesTitles(objCSVArr);
+  //   }
+  //   getData();
+  // }, []);
+
   useEffect(() => {
-    async function getData() {
-      const response = await fetch("./movies.csv");
-      const reader = response.body.getReader();
-      const result = await reader.read(); // raw array
-      const decoder = new TextDecoder("utf-8");
-      const csv = decoder.decode(result.value); // the csv text
-
-      let arrCsv = csv.split("\r\n");
-      let firstLineTitles = arrCsv[0].split(",");
-      let firstTitle = firstLineTitles[0];
-      let secondTitle = firstLineTitles[1];
-      let thirdTitle = firstLineTitles[2];
-      let objCSV = {};
-      let objCSVArr = [];
-
-      for (let i = 1; i < arrCsv.length; i++) {
-        let row = arrCsv[i].split(",");
-
-        objCSV[firstTitle] = row[0];
-        objCSV[secondTitle] = row[1];
-        objCSV[thirdTitle] = row[2];
-
-        objCSVArr.push(objCSV);
-        objCSV = {};
-      }
-      //console.log(objCSVArr);
-      setListMoviesTitles(objCSVArr);
-    }
-    getData();
+    axios.get("http://localhost:3000/movies").then(function (response) {
+      setListMoviesTitles(response.data);
+    });
   }, []);
 
   let resultMovieList = listOfMovieTitles(listMoviesTitles, resRows);

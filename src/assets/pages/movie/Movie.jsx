@@ -9,7 +9,7 @@ export default function MoviePage() {
 
   useEffect(() => {
     axios.get("http://localhost:3000/movies").then(function (response) {
-      setMovies(response.data.movies);
+      setMovies(response.data);
     });
   }, []);
 
