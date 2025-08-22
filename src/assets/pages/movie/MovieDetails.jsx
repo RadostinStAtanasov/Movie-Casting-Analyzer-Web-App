@@ -139,6 +139,14 @@ export default function MovieDetailsPage() {
     resultActorsAndRoles
   );
 
+  let asd = useEffect(() => {
+    axios.get(`http://localhost:3000/movies/:${id}`).then(function (response) {
+      return response.data;
+    });
+  }, []);
+
+  console.log(asd);
+
   return (
     <>
       <h1>Movie Details</h1>

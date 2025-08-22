@@ -1,3 +1,5 @@
+//const { v4: generateId } = require("uuid");
+const Papa = require("papaparse");
 const express = require("express");
 const fs = require("fs");
 const router = express.Router();
@@ -34,6 +36,25 @@ router.get("/roles", (req, res) => {
   let objCSVArr = papaNotParserRoles(fileContent);
 
   res.status(200).json(objCSVArr);
+});
+
+router.get("/movies/:movieId", (req, res) => {
+  const id = req.params.movieId;
+  const fileContent = fs.readFileSync("./data/movies.csv", "utf8");
+
+  let objCSVArr = papaNotParser(fileContent);
+
+  let movie = objCSVArr.find((m) => m.ID === id);
+
+  res.status(200).json(movie);
+});
+
+router.post("/actors", async (req, res) => {
+  const data = req.body;
+  const fileContent = fs.readFileSync("./data/actors.csv", "utf8");
+  let objCSVArr = papaNotParser(fileContent);
+  objCSVArr.unshift({ ...data });
+  fs.writeFileSync("./data/actors.csv", Papa.unparse(objCSVArr));
 });
 
 function papaNotParser(fileContent) {

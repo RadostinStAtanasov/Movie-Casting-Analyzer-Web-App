@@ -65,12 +65,32 @@ export default function ActorPage() {
     }
     const id = rows.length + 1;
     const actor = { ID: id, FullName: fullName, BirthDate: birthDate };
-    const newPictureActor = { image: newActorImage };
+    // const newPictureActor = { image: newActorImage };
 
-    setRows([actor, ...rows]);
-    setImages([newPictureActor, ...images]);
-    setFullName("");
-    setBirthDate("");
+    // setRows([actor, ...rows]);
+    // setImages([newPictureActor, ...images]);
+    // setFullName("");
+    // setBirthDate("");
+
+    fetch("http://localhost:3000/actors", {
+      method: "POST",
+      body: JSON.stringify(actor),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      //.then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
+
+    //   axios
+    //     .post("http://localhost:3000/actors", actor)
+    //     .then(function (response) {
+    //       console.log(response);
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //     });
   };
 
   const updateActor = () => {};
