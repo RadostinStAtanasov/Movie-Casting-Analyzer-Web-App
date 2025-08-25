@@ -8,3 +8,6 @@ Most played actors pair render on home screen. How movies shared, list of movies
 and two actors names. On moviepage show all movies, click on movie got to detailpage and show info
 title, release date, nad cast(actors and their roles, or Unnamed if RoleName is null).
 On Actorpage render all actors, click on actor show all movie they acted in and their role (if any) prer movie.
+
+First: You need to go to backend folder and start server => 'npm start' in terminal to run the data .csv files.
+Second: In second split terminal you need to go to 'Movie-Casting-Analyzer-Web-App' folder and start frontend => 'npm run dev' in terminal
