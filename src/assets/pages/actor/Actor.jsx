@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import classes from "./Actor.module.css";
 import { IMAGES_ACTORS } from "../../util/generateImages";
 import newActorImage from "../../images/newActorImage.jpg";
-import axios from "axios";
 
 export default function ActorPage() {
   const [rows, setRows] = useState([]);
@@ -19,8 +18,6 @@ export default function ActorPage() {
       })
       .catch((error) => console.log(error));
   }, []);
-
-  console.log(rows);
 
   const addActor = () => {
     if (fullName == "" || birthDate == "") {

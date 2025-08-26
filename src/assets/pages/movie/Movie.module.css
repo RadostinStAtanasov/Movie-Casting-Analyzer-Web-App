@@ -19,3 +19,30 @@ ul {
     gap: 25px;
     text-align: center;
 }
+.inputForm {
+    display: flex;
+    margin-left: 110px;
+    margin-bottom: 50px;
+}
+
+.inputForm input {
+    margin-left: 10px;
+}
+
+.inputForm label {
+    margin-left: 10px;
+}
+.btn {
+    width: 150px;
+    height: 24px;
+    margin-left: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.btn:hover {
+    background-color: green; /* Green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+}

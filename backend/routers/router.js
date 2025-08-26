@@ -9,13 +9,34 @@ router.get("/movies", (req, res) => {
 
   let objCSVArr = papaNotParser(fileContent);
 
-  //   const moviesData = Papa.parse(fileContent, {
-  //     header: true,
-  //     dynamicTyping: true,
-  //   });
+  res.status(200).json(objCSVArr);
+});
+
+router.post("/movies", (req, res) => {
+  const data = req.body;
+  const fileContent = fs.readFileSync("./data/movies.csv", "utf8");
+  let objCSVArr = papaNotParser(fileContent);
+  objCSVArr.unshift({ ...data });
+  fs.writeFileSync("./data/movies.csv", Papa.unparse(objCSVArr));
+});
+
+router.get("/roles", (req, res) => {
+  const fileContent = fs.readFileSync("./data/roles.csv", "utf-8");
+
+  let objCSVArr = papaNotParserRoles(fileContent);
 
   res.status(200).json(objCSVArr);
 });
+
+// router.get("/movies/:movieId", (req, res) => {
+//   const id = req.params.movieId;
+//   const fileContent = fs.readFileSync("./data/movies.csv", "utf8");
+
+//   let objCSVArr = papaNotParser(fileContent);
+//   let movie = objCSVArr.find((m) => m.ID === id);
+
+//   res.status(200).json(movie);
+// });
 
 router.get("/actors", (req, res) => {
   const fileContent = fs.readFileSync("./data/actors.csv", "utf8");
@@ -30,23 +51,6 @@ router.get("/actors", (req, res) => {
   res.status(200).json(objCSVArr);
 });
 
-router.get("/roles", (req, res) => {
-  const fileContent = fs.readFileSync("./data/roles.csv", "utf-8");
-
-  let objCSVArr = papaNotParserRoles(fileContent);
-
-  res.status(200).json(objCSVArr);
-});
-
-router.get("/movies/:movieId", (req, res) => {
-  const id = req.params.movieId;
-  const fileContent = fs.readFileSync("./data/movies.csv", "utf8");
-
-  let objCSVArr = papaNotParser(fileContent);
-  let movie = objCSVArr.find((m) => m.ID === id);
-
-  res.status(200).json(movie);
-});
 router.post("/actors", async (req, res) => {
   const data = req.body;
   const fileContent = fs.readFileSync("./data/actors.csv", "utf8");
@@ -74,20 +78,17 @@ router.put("/actors/update/:actorId", (req, res) => {
   const fileContent = fs.readFileSync("./data/actors.csv", "utf8");
 
   let objCSVArr = papaNotParser(fileContent);
-  let resultNewArrUpdate = objCSVArr.map((a) =>
-    a.ID === id ? a.FullName == "draganchu" : undefined
-  );
 
-  // for (let i = 0; i < objCSVArr.length; i++) {
-  //   if (objCSVArr[i].ID === id) {
-  //     objCSVArr[i].FullName = newName;
-  //   }
-  // }
+  for (let i = 0; i < objCSVArr.length; i++) {
+    if (objCSVArr[i].ID === id) {
+      objCSVArr[i].FullName = newName;
+    }
+  }
 
-  fs.writeFileSync("./data/actors.csv", Papa.unparse(resultNewArrUpdate));
+  fs.writeFileSync("./data/actors.csv", Papa.unparse(objCSVArr));
 
-  console.log("update");
-  console.log(data);
+  // console.log("update");
+  // console.log(data);
 });
 
 function papaNotParser(fileContent) {

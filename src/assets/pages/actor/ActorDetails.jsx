@@ -5,7 +5,6 @@ import {
   actorAllMoviePrayed,
   getMoviesInActorDetails,
 } from "../../util/functionsProcessing";
-import axios from "axios";
 
 export default function ActorDetailsPage() {
   const params = useParams();
@@ -25,17 +24,23 @@ export default function ActorDetailsPage() {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:3000/roles").then(function (response) {
-      setRows(response.data);
-    });
+    fetch("http://localhost:3000/roles")
+      .then((response) => response.json())
+      .then((response) => {
+        setRows(response);
+      })
+      .catch((error) => console.log(error));
   }, []);
 
   const resultActorDetailsRoles = actorAllMoviePrayed(rows, id);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/movies").then(function (response) {
-      setMovies(response.data);
-    });
+    fetch("http://localhost:3000/movies")
+      .then((response) => response.json())
+      .then((response) => {
+        setMovies(response);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   const resultActorRolesMovies = getMoviesInActorDetails(

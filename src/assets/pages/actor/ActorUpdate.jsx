@@ -14,7 +14,11 @@ export default function ActorUpdatePage() {
   const params = useParams();
   const id = params.actorId;
 
-  const updateActor = (id, actorName) => {
+  let data = {
+    actorName: actorName,
+  };
+
+  const updateActor = (id, data) => {
     fetch("http://localhost:3000/actors/update/" + id, {
       method: "PUT",
       headers: {
@@ -29,119 +33,39 @@ export default function ActorUpdatePage() {
         console.log(err);
       });
   };
-
-  //roles
   useEffect(() => {
-    async function getData() {
-      const response = await fetch("../../../../roles.csv"); //get request
-      const reader = response.body.getReader();
-      const result = await reader.read(); // raw array
-      const decoder = new TextDecoder("utf-8");
-      const csv = decoder.decode(result.value); // the csv text
-
-      let arrCsv = csv.split("\r\n");
-      let firstLineTitles = arrCsv[0].split(",");
-      let firstTitle = firstLineTitles[0];
-      let secondTitle = firstLineTitles[1];
-      let thirdTitle = firstLineTitles[2];
-      let forthTitle = firstLineTitles[3];
-      let objCSV = {};
-      let objCSVArr = [];
-
-      for (let i = 1; i < arrCsv.length; i++) {
-        let row = arrCsv[i].split(",");
-
-        objCSV[firstTitle] = row[0];
-        objCSV[secondTitle] = row[1];
-        objCSV[thirdTitle] = row[2];
-        objCSV[forthTitle] = row[3];
-
-        objCSVArr.push(objCSV);
-        objCSV = {};
-      }
-      //console.log(objCSVArr);
-
-      setRoles(objCSVArr);
-      //console.log(roles);
-    }
-    getData();
+    fetch("http://localhost:3000/roles")
+      .then((response) => response.json())
+      .then((response) => {
+        setRoles(response);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   const actorMoviePlayed = actorAllMoviePrayed(roles, id);
-  //console.log(actorMoviePlayed);
 
-  //movies
   useEffect(() => {
-    async function getData() {
-      const response = await fetch("../../../../movies.csv");
-      const reader = response.body.getReader();
-      const result = await reader.read();
-      const decoder = new TextDecoder("utf-8");
-      const csv = decoder.decode(result.value);
-
-      let arrCsv = csv.split("\r\n");
-      let firstLineTitles = arrCsv[0].split(",");
-      let firstTitle = firstLineTitles[0];
-      let secondTitle = firstLineTitles[1];
-      let thirdTitle = firstLineTitles[2];
-      let objCSV = {};
-      let objCSVArr = [];
-
-      for (let i = 1; i < arrCsv.length; i++) {
-        let row = arrCsv[i].split(",");
-
-        objCSV[firstTitle] = row[0];
-        objCSV[secondTitle] = row[1];
-        objCSV[thirdTitle] = row[2];
-
-        objCSVArr.push(objCSV);
-        objCSV = {};
-      }
-      //console.log(objCSVArr);
-      setMovies(objCSVArr);
-    }
-    getData();
+    fetch("http://localhost:3000/movies")
+      .then((response) => response.json())
+      .then((response) => {
+        setMovies(response);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   const resultActorRolesMovies = getMoviesInActorDetails(
     movies,
     actorMoviePlayed
   );
-  //console.log(resultActorRolesMovies);
 
-  //actors
   useEffect(() => {
-    async function getData() {
-      const response = await fetch("../../../../actors.csv");
-      const reader = response.body.getReader();
-      const result = await reader.read(); // raw array
-      const decoder = new TextDecoder("utf-8");
-      const csv = decoder.decode(result.value); // the csv text
-
-      let arrCsv = csv.split("\r\n");
-      let firstLineTitles = arrCsv[0].split(",");
-      let firstTitle = firstLineTitles[0];
-      let secondTitle = firstLineTitles[1];
-      let thirdTitle = firstLineTitles[2];
-      let objCSV = {};
-      let objCSVArr = [];
-
-      for (let i = 1; i < arrCsv.length; i++) {
-        let row = arrCsv[i].split(",");
-
-        objCSV[firstTitle] = row[0];
-        objCSV[secondTitle] = row[1];
-        objCSV[thirdTitle] = row[2];
-
-        objCSVArr.push(objCSV);
-        objCSV = {};
-      }
-      setActors(objCSVArr);
-    }
-    getData();
+    fetch("http://localhost:3000/actors")
+      .then((response) => response.json())
+      .then((response) => {
+        setActors(response);
+      })
+      .catch((err) => console.log(err));
   }, []);
-
-  //console.log(actors);
 
   function actorNameFn(actors, id) {
     let actorName;
@@ -155,14 +79,11 @@ export default function ActorUpdatePage() {
     return actorName;
   }
   let resultActorName = actorNameFn(actors, id);
-  //console.log(actorName);
-  //console.log(resultActorRolesMovies[1]);
 
   return (
     <>
       <div className={classes.actorContainer}>
         <div style={{ fontSize: "32px" }}>Actor Update Page</div>
-        {/* <label htmlFor="">Actor name</label> */}
         {
           <p>
             <strong>Your name is:</strong> {resultActorName}
@@ -178,7 +99,7 @@ export default function ActorUpdatePage() {
             Your <strong>new</strong> name is: {actorName}.
           </p>
         )}
-        <button onClick={() => updateActor(id, actorName)}>Update name</button>
+        <button onClick={() => updateActor(id, data)}>Update name</button>
       </div>
 
       <ul>
