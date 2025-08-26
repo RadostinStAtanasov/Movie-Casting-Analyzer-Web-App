@@ -11,53 +11,22 @@ export default function ActorPage() {
   const [fullName, setFullName] = useState("");
   const [birthDate, setBirthDate] = useState("");
 
-  // useEffect(() => {
-  //   async function getData() {
-  //     const response = await fetch("./actors.csv");
-  //     const reader = response.body.getReader();
-  //     const result = await reader.read(); // raw array
-  //     const decoder = new TextDecoder("utf-8");
-  //     const csv = decoder.decode(result.value); // the csv text
-
-  //     let arrCsv = csv.split("\r\n");
-  //     let firstLineTitles = arrCsv[0].split(",");
-  //     let firstTitle = firstLineTitles[0];
-  //     let secondTitle = firstLineTitles[1];
-  //     let thirdTitle = firstLineTitles[2];
-  //     let objCSV = {};
-  //     let objCSVArr = [];
-
-  //     for (let i = 1; i < arrCsv.length; i++) {
-  //       let row = arrCsv[i].split(",");
-
-  //       objCSV[firstTitle] = row[0];
-  //       objCSV[secondTitle] = row[1];
-  //       objCSV[thirdTitle] = row[2];
-
-  //       objCSVArr.push(objCSV);
-  //       objCSV = {};
-  //     }
-
-  //     setRows(objCSVArr);
-  //     setImages([...IMAGES_ACTORS]);
-  //   }
-  //   getData();
-  // }, []);
-
   useEffect(() => {
-    axios.get("http://localhost:3000/actors").then(function (response) {
-      setRows(response.data);
-    });
+    fetch("http://localhost:3000/actors")
+      .then((response) => response.json())
+      .then((response) => {
+        setRows(response);
+      })
+      .catch((error) => console.log(error));
   }, []);
 
-  const deleteActor = (id, rowId) => {
-    if (window.confirm("Are you sure you want to delete this row?")) {
-      // Create a new array to ensure immutability
-      const updatedData = rows.filter((row) => row.ID !== id);
-      setRows(updatedData); // Update state to trigger re-render
-      images.splice(rowId, 1);
-    }
-  };
+  console.log(rows);
+
+  // useEffect(() => {
+  //   axios.get("http://localhost:3000/actors").then(function (response) {
+  //     setRows(response.data);
+  //   });
+  // }, []);
 
   const addActor = () => {
     if (fullName == "" || birthDate == "") {
@@ -65,12 +34,6 @@ export default function ActorPage() {
     }
     const id = rows.length + 1;
     const actor = { ID: id, FullName: fullName, BirthDate: birthDate };
-    // const newPictureActor = { image: newActorImage };
-
-    // setRows([actor, ...rows]);
-    // setImages([newPictureActor, ...images]);
-    // setFullName("");
-    // setBirthDate("");
 
     fetch("http://localhost:3000/actors", {
       method: "POST",
@@ -79,18 +42,8 @@ export default function ActorPage() {
         "Content-Type": "application/json",
       },
     })
-      //.then((response) => response.json())
       .then((data) => console.log(data))
       .catch((error) => console.error(error));
-
-    //   axios
-    //     .post("http://localhost:3000/actors", actor)
-    //     .then(function (response) {
-    //       console.log(response);
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
   };
 
   const updateActor = () => {};
@@ -134,12 +87,7 @@ export default function ActorPage() {
                   />
                   {item.FullName}
                 </Link>
-                <button
-                  className={classes.deleteActor}
-                  onClick={() => deleteActor(item.ID, index)}
-                >
-                  Delete Actor
-                </button>
+
                 <Link to={`/actors/update/${item.ID}`}>
                   <button
                     className={classes.updateActor}

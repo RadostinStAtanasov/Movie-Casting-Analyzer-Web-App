@@ -43,10 +43,21 @@ router.get("/movies/:movieId", (req, res) => {
   const fileContent = fs.readFileSync("./data/movies.csv", "utf8");
 
   let objCSVArr = papaNotParser(fileContent);
-
   let movie = objCSVArr.find((m) => m.ID === id);
 
   res.status(200).json(movie);
+});
+
+router.delete("/actors/:actorId", async (req, res) => {
+  const id = req.params.actorId;
+  const fileContent = fs.readFileSync("./data/actors.csv", "utf8");
+
+  let objCSVArr = papaNotParser(fileContent);
+  let resultArrWithoutActor = objCSVArr.filter((a) => a.ID !== id);
+
+  fs.writeFileSync("./data/actors.csv", Papa.unparse(resultArrWithoutActor));
+  console.log("work delete");
+  console.log(id);
 });
 
 router.post("/actors", async (req, res) => {
