@@ -22,19 +22,12 @@ export default function ActorPage() {
 
   console.log(rows);
 
-  // useEffect(() => {
-  //   axios.get("http://localhost:3000/actors").then(function (response) {
-  //     setRows(response.data);
-  //   });
-  // }, []);
-
   const addActor = () => {
     if (fullName == "" || birthDate == "") {
       return;
     }
     const id = rows.length + 1;
     const actor = { ID: id, FullName: fullName, BirthDate: birthDate };
-
     fetch("http://localhost:3000/actors", {
       method: "POST",
       body: JSON.stringify(actor),
@@ -45,8 +38,6 @@ export default function ActorPage() {
       .then((data) => console.log(data))
       .catch((error) => console.error(error));
   };
-
-  const updateActor = () => {};
 
   return (
     <div className="app">
@@ -86,15 +77,6 @@ export default function ActorPage() {
                     alt="theRock"
                   />
                   {item.FullName}
-                </Link>
-
-                <Link to={`/actors/update/${item.ID}`}>
-                  <button
-                    className={classes.updateActor}
-                    onClick={() => updateActor(item.ID)}
-                  >
-                    Update Actor
-                  </button>
                 </Link>
               </div>
             </li>

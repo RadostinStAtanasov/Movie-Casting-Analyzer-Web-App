@@ -14,6 +14,22 @@ export default function ActorUpdatePage() {
   const params = useParams();
   const id = params.actorId;
 
+  const updateActor = (id, actorName) => {
+    fetch("http://localhost:3000/actors/update/" + id, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ actorName: actorName }),
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   //roles
   useEffect(() => {
     async function getData() {
@@ -91,7 +107,7 @@ export default function ActorUpdatePage() {
     movies,
     actorMoviePlayed
   );
-  console.log(resultActorRolesMovies);
+  //console.log(resultActorRolesMovies);
 
   //actors
   useEffect(() => {
@@ -140,7 +156,7 @@ export default function ActorUpdatePage() {
   }
   let resultActorName = actorNameFn(actors, id);
   //console.log(actorName);
-  console.log(resultActorRolesMovies[1]);
+  //console.log(resultActorRolesMovies[1]);
 
   return (
     <>
@@ -162,6 +178,7 @@ export default function ActorUpdatePage() {
             Your <strong>new</strong> name is: {actorName}.
           </p>
         )}
+        <button onClick={() => updateActor(id, actorName)}>Update name</button>
       </div>
 
       <ul>

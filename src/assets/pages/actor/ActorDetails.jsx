@@ -16,16 +16,12 @@ export default function ActorDetailsPage() {
 
   const deleteActor = (id) => {
     if (window.confirm("Are you sure you want to delete this row?")) {
-      //const updatedData = rows.filter((row) => row.ID !== id);
-      let url = "http://localhost:3000/actors";
-      fetch(url + "/" + id, {
+      fetch("http://localhost:3000/actors/" + id, {
         method: "DELETE",
       })
         .then(() => console.log("removed"))
         .catch((error) => console.log(error));
     }
-
-    console.log("click");
   };
 
   useEffect(() => {
@@ -72,6 +68,9 @@ export default function ActorDetailsPage() {
         <button className={classes.deleteActor} onClick={() => deleteActor(id)}>
           Delete Actor
         </button>
+        <Link to={`/actors/update/${id}`}>
+          <button className={classes.updateActor}>Update Actor</button>
+        </Link>
         <Link to=".." relative="path">
           <button type="button" className={classes.detailsMovie}>
             Back

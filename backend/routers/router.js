@@ -47,6 +47,13 @@ router.get("/movies/:movieId", (req, res) => {
 
   res.status(200).json(movie);
 });
+router.post("/actors", async (req, res) => {
+  const data = req.body;
+  const fileContent = fs.readFileSync("./data/actors.csv", "utf8");
+  let objCSVArr = papaNotParser(fileContent);
+  objCSVArr.unshift({ ...data });
+  fs.writeFileSync("./data/actors.csv", Papa.unparse(objCSVArr));
+});
 
 router.delete("/actors/:actorId", async (req, res) => {
   const id = req.params.actorId;
@@ -60,12 +67,27 @@ router.delete("/actors/:actorId", async (req, res) => {
   console.log(id);
 });
 
-router.post("/actors", async (req, res) => {
+router.put("/actors/update/:actorId", (req, res) => {
+  const id = req.params.actorId;
   const data = req.body;
+  const newName = data.actorName;
   const fileContent = fs.readFileSync("./data/actors.csv", "utf8");
+
   let objCSVArr = papaNotParser(fileContent);
-  objCSVArr.unshift({ ...data });
-  fs.writeFileSync("./data/actors.csv", Papa.unparse(objCSVArr));
+  let resultNewArrUpdate = objCSVArr.map((a) =>
+    a.ID === id ? a.FullName == "draganchu" : undefined
+  );
+
+  // for (let i = 0; i < objCSVArr.length; i++) {
+  //   if (objCSVArr[i].ID === id) {
+  //     objCSVArr[i].FullName = newName;
+  //   }
+  // }
+
+  fs.writeFileSync("./data/actors.csv", Papa.unparse(resultNewArrUpdate));
+
+  console.log("update");
+  console.log(data);
 });
 
 function papaNotParser(fileContent) {
