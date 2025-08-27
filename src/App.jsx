@@ -6,6 +6,7 @@ import RootLayout from "./assets/pages/Root";
 import MovieDetailsPage from "./assets/pages/movie/MovieDetails";
 import ActorDetailsPage from "./assets/pages/actor/ActorDetails";
 import ActorUpdatePage from "./assets/pages/actor/ActorUpdate";
+import ActorUpdateNamePage from "./assets/pages/actor/ActorUpdateName";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,11 @@ const router = createBrowserRouter([
       { path: "/movies/:movieId", element: <MovieDetailsPage /> },
       { path: "/actors", element: <ActorPage /> },
       { path: "/actors/:actorId", element: <ActorDetailsPage /> },
-      { path: "actors/update/:actorId", element: <ActorUpdatePage /> },
+      { path: "/actors/update/:actorId", element: <ActorUpdatePage /> },
+      {
+        path: "/actors/updateName/:actorNameId",
+        element: <ActorUpdateNamePage />,
+      },
     ],
   },
 ]);

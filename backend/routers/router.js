@@ -71,7 +71,7 @@ router.delete("/actors/:actorId", async (req, res) => {
   console.log(id);
 });
 
-router.put("/actors/update/:actorId", (req, res) => {
+router.put("/actors/updateName/:actorId", (req, res) => {
   const id = req.params.actorId;
   const data = req.body;
   const newName = data.actorName;
@@ -87,8 +87,41 @@ router.put("/actors/update/:actorId", (req, res) => {
 
   fs.writeFileSync("./data/actors.csv", Papa.unparse(objCSVArr));
 
-  // console.log("update");
-  // console.log(data);
+  console.log("yeaaa");
+});
+
+router.put("/actors/update/:actorId", (req, res) => {
+  const idMovie = req.params.actorId;
+  const newMovieName = req.body.movieTitle;
+  const newRole = req.body.actorRole;
+  const actorId = req.body.idActor;
+  const fileContentMovies = fs.readFileSync("./data/movies.csv", "utf8");
+
+  let objCSVArrMovies = papaNotParser(fileContentMovies);
+
+  for (let i = 0; i < objCSVArrMovies.length; i++) {
+    if (objCSVArrMovies[i].ID === idMovie) {
+      objCSVArrMovies[i].Title = newMovieName;
+    }
+  }
+
+  fs.writeFileSync("./data/movies.csv", Papa.unparse(objCSVArrMovies));
+
+  const fileContentRoles = fs.readFileSync("./data/roles.csv", "utf8");
+  let objCSVArrRoles = papaNotParserRoles(fileContentRoles);
+
+  for (let i = 0; i < objCSVArrRoles.length; i++) {
+    if (
+      objCSVArrRoles[i].ActorID === actorId &&
+      objCSVArrRoles[i].MovieID === idMovie
+    ) {
+      objCSVArrRoles[i].RoleName = newRole;
+    }
+  }
+
+  fs.writeFileSync("./data/roles.csv", Papa.unparse(objCSVArrRoles));
+
+  console.log("change title movie and role");
 });
 
 function papaNotParser(fileContent) {

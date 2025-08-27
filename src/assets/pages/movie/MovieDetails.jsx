@@ -6,7 +6,6 @@ import {
   movieAllActors,
   takeActorsNames,
 } from "../../util/functionsProcessing";
-import axios from "axios";
 
 export default function MovieDetailsPage() {
   const params = useParams();
@@ -15,137 +14,41 @@ export default function MovieDetailsPage() {
   const [movieActorsRoles, setMovieActorsRoles] = useState([]);
   const [movieActorsNames, setMovieActorsNames] = useState([]);
 
-  // useEffect(() => {
-  //   async function getData() {
-  //     const response = await fetch("../../../movies.csv");
-  //     const reader = response.body.getReader();
-  //     const result = await reader.read(); // raw array
-  //     const decoder = new TextDecoder("utf-8");
-  //     const csv = decoder.decode(result.value); // the csv text
-
-  //     let arrCsv = csv.split("\r\n");
-  //     let firstLineTitles = arrCsv[0].split(",");
-  //     let firstTitle = firstLineTitles[0];
-  //     let secondTitle = firstLineTitles[1];
-  //     let thirdTitle = firstLineTitles[2];
-  //     let objCSV = {};
-  //     let objCSVArr = [];
-
-  //     for (let i = 1; i < arrCsv.length; i++) {
-  //       let row = arrCsv[i].split(",");
-
-  //       objCSV[firstTitle] = row[0];
-  //       objCSV[secondTitle] = row[1];
-  //       objCSV[thirdTitle] = row[2];
-
-  //       objCSVArr.push(objCSV);
-  //       objCSV = {};
-  //     }
-  //     setRows(objCSVArr);
-  //   }
-  //   getData();
-  // }, []);
-
   useEffect(() => {
-    axios.get("http:localhost:3000/movies").then(function (response) {
-      setRows(response.data);
-    });
+    fetch("http://localhost:3000/movies")
+      .then((response) => response.json())
+      .then((response) => {
+        setRows(response);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   const resultDetailsMovie = detailsForMovie(rows, id);
 
-  // useEffect(() => {
-  //   async function getData() {
-  //     const response = await fetch("../../../roles.csv");
-  //     const reader = response.body.getReader();
-  //     const result = await reader.read(); // raw array
-  //     const decoder = new TextDecoder("utf-8");
-  //     const csv = decoder.decode(result.value); // the csv text
-
-  //     let arrCsv = csv.split("\r\n");
-  //     let firstLineTitles = arrCsv[0].split(",");
-  //     let firstTitle = firstLineTitles[0];
-  //     let secondTitle = firstLineTitles[1];
-  //     let thirdTitle = firstLineTitles[2];
-  //     let forthTitle = firstLineTitles[3];
-  //     let objCSV = {};
-  //     let objCSVArr = [];
-
-  //     for (let i = 1; i < arrCsv.length; i++) {
-  //       let row = arrCsv[i].split(",");
-
-  //       objCSV[firstTitle] = row[0];
-  //       objCSV[secondTitle] = row[1];
-  //       objCSV[thirdTitle] = row[2];
-  //       objCSV[forthTitle] = row[3];
-
-  //       objCSVArr.push(objCSV);
-  //       objCSV = {};
-  //     }
-  //     // console.log(objCSVArr);
-  //     setMovieActorsRoles(objCSVArr);
-  //   }
-  //   getData();
-  // }, []);
-
   useEffect(() => {
-    axios.get("http://localhost:3000/roles").then(function (response) {
-      setMovieActorsRoles(response.data);
-    });
+    fetch("http://localhost:3000/roles")
+      .then((response) => response.json())
+      .then((response) => {
+        setMovieActorsRoles(response);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   const resultActorsAndRoles = movieAllActors(movieActorsRoles, id);
 
-  // useEffect(() => {
-  //   async function getData() {
-  //     const response = await fetch("../../../actors.csv");
-  //     const reader = response.body.getReader();
-  //     const result = await reader.read(); // raw array
-  //     const decoder = new TextDecoder("utf-8");
-  //     const csv = decoder.decode(result.value); // the csv text
-  //     let arrCsv = csv.split("\r\n");
-  //     let firstLineTitles = arrCsv[0].split(",");
-  //     let firstTitle = firstLineTitles[0];
-  //     let secondTitle = firstLineTitles[1];
-  //     let thirdTitle = firstLineTitles[2];
-  //     let objCSV = {};
-  //     let objCSVArr = [];
-
-  //     for (let i = 1; i < arrCsv.length; i++) {
-  //       let row = arrCsv[i].split(",");
-
-  //       objCSV[firstTitle] = row[0];
-  //       objCSV[secondTitle] = row[1];
-  //       objCSV[thirdTitle] = row[2];
-
-  //       objCSVArr.push(objCSV);
-  //       objCSV = {};
-  //     }
-  //     //console.log(objCSVArr);
-
-  //     setMovieActorsNames(objCSVArr);
-  //   }
-  //   getData();
-  // }, []);
-
   useEffect(() => {
-    axios.get("http://localhost:3000/actors").then(function (response) {
-      setMovieActorsNames(response.data);
-    });
+    fetch("http://localhost:3000/actors")
+      .then((response) => response.json())
+      .then((response) => {
+        setMovieActorsNames(response);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   const resultMovieActorRoles = takeActorsNames(
     movieActorsNames,
     resultActorsAndRoles
   );
-
-  let asd = useEffect(() => {
-    axios.get(`http://localhost:3000/movies/:${id}`).then(function (response) {
-      return response.data;
-    });
-  }, []);
-
-  console.log(asd);
 
   return (
     <>

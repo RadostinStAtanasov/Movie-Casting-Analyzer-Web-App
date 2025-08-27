@@ -128,6 +128,7 @@ export function getMoviesInActorDetails(movies, resultActorDetailsRoles) {
   for (let i = 0; i < movies.length; i++) {
     for (let j = 0; j < resultActorDetailsRoles.length; j++) {
       if (+movies[i].ID == resultActorDetailsRoles[j].movieId) {
+        actorMoviesAndRoles.ID = movies[i].ID;
         actorMoviesAndRoles.Title = movies[i].Title;
         actorMoviesAndRoles.Role = resultActorDetailsRoles[j].roleName;
         moviesActorActedAndRoles.push(actorMoviesAndRoles);

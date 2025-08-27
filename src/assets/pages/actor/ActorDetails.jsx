@@ -12,6 +12,7 @@ export default function ActorDetailsPage() {
 
   const [rows, setRows] = useState([]);
   const [movies, setMovies] = useState([]);
+  const [actors, setActors] = useState([]);
 
   const deleteActor = (id) => {
     if (window.confirm("Are you sure you want to delete this row?")) {
@@ -23,6 +24,7 @@ export default function ActorDetailsPage() {
     }
   };
 
+  //roles
   useEffect(() => {
     fetch("http://localhost:3000/roles")
       .then((response) => response.json())
@@ -34,6 +36,7 @@ export default function ActorDetailsPage() {
 
   const resultActorDetailsRoles = actorAllMoviePrayed(rows, id);
 
+  //movies
   useEffect(() => {
     fetch("http://localhost:3000/movies")
       .then((response) => response.json())
@@ -48,9 +51,30 @@ export default function ActorDetailsPage() {
     resultActorDetailsRoles
   );
 
+  useEffect(() => {
+    fetch("http://localhost:3000/actors")
+      .then((response) => response.json())
+      .then((response) => {
+        setActors(response);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  let actorName;
+
+  for (let i = 0; i < actors.length; i++) {
+    if (actors[i].ID === id) {
+      actorName = actors[i].FullName;
+    }
+  }
+
   return (
     <>
+      <h2 style={{ textAlign: "center" }}>{actorName}</h2>
       <h1>All movies acted in</h1>
+      <Link to={`/actors/updateName/${id}`}>
+        <button type="button">Change Actor Name</button>
+      </Link>
       <ul className={classes.ulList}>
         {resultActorRolesMovies.length != 0 ? (
           resultActorRolesMovies.map((item, index) => (
@@ -64,6 +88,11 @@ export default function ActorDetailsPage() {
                 ) : (
                   <div>{item.Role}</div>
                 )}
+                <Link to={`/actors/update/${item.ID}`} state={{ idActor: id }}>
+                  <button className={classes.updateActor}>
+                    Update Role and Movie
+                  </button>
+                </Link>
               </div>
             </li>
           ))
@@ -73,9 +102,6 @@ export default function ActorDetailsPage() {
         <button className={classes.deleteActor} onClick={() => deleteActor(id)}>
           Delete Actor
         </button>
-        <Link to={`/actors/update/${id}`}>
-          <button className={classes.updateActor}>Update Actor</button>
-        </Link>
         <Link to=".." relative="path">
           <button type="button" className={classes.detailsMovie}>
             Back
