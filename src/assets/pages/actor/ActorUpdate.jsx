@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import classes from "./ActorUpdate.module.css";
 import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function ActorUpdatePage(props) {
   const [roles, setRoles] = useState([]);
@@ -99,12 +100,11 @@ export default function ActorUpdatePage(props) {
               </p>
             )}
             <br />
-            <button onClick={() => updateActorMovies(id, dataRoleMovieName)}>
-              Update Movie and Role
-            </button>
-            {/* <button onClick={() => updateActorRole(id, data)}>
-              Update Actor Role
-            </button> */}
+            <Link to="../actors">
+              <button onClick={() => updateActorMovies(id, dataRoleMovieName)}>
+                Update Movie and Role
+              </button>
+            </Link>
           </div>
         </li>
       </ul>
