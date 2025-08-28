@@ -81,6 +81,10 @@ export default function ActorUpdateNamePage() {
           Update Actor Name
         </button>
       </Link>
+      <br />
+      {/* <Link to="..">
+        <button>Back</button>
+      </Link> */}
     </div>
   );
 }

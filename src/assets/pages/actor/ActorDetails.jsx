@@ -103,9 +103,14 @@ export default function ActorDetailsPage() {
         ) : (
           <div>Not Played at any movie</div>
         )}
-        <button className={classes.deleteActor} onClick={() => deleteActor(id)}>
-          Delete Actor
-        </button>
+        <Link to="..">
+          <button
+            className={classes.deleteActor}
+            onClick={() => deleteActor(id)}
+          >
+            Delete Actor
+          </button>
+        </Link>
         <Link to=".." relative="path">
           <button type="button" className={classes.detailsMovie}>
             Back

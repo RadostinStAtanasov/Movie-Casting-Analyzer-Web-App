@@ -8,6 +8,7 @@ import ActorDetailsPage from "./assets/pages/actor/ActorDetails";
 import ActorUpdatePage from "./assets/pages/actor/ActorUpdate";
 import ActorUpdateNamePage from "./assets/pages/actor/ActorUpdateName";
 import MovieUpdatePage from "./assets/pages/movie/MovieUpdate";
+import MovieUpdateTitleReleasedatePage from "./assets/pages/movie/MovieUpdateTitleReleasedate";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,11 @@ const router = createBrowserRouter([
       { path: "/", element: <HomePage /> },
       { path: "/movies", element: <MoviePage /> },
       { path: "/movies/:movieId", element: <MovieDetailsPage /> },
-      { path: "movies/update/:movieId", element: <MovieUpdatePage /> },
+      { path: "/movies/update/:movieId", element: <MovieUpdatePage /> },
+      {
+        path: "/movies/update/updatetitleAndReleasedate/:movieId",
+        element: <MovieUpdateTitleReleasedatePage />,
+      },
       { path: "/actors", element: <ActorPage /> },
       { path: "/actors/:actorId", element: <ActorDetailsPage /> },
       { path: "/actors/update/:actorId", element: <ActorUpdatePage /> },
