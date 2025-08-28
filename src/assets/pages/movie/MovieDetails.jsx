@@ -50,6 +50,8 @@ export default function MovieDetailsPage() {
     resultActorsAndRoles
   );
 
+  console.log(resultMovieActorRoles);
+
   function deleteMovie(id) {
     if (window.confirm("Are you sure you want to delete this?")) {
       fetch("http://localhost:3000/movies/" + id, {
@@ -92,7 +94,17 @@ export default function MovieDetailsPage() {
                   {movie.role == "null" ? (
                     <div style={{ color: "red" }}>UnNamed</div>
                   ) : (
-                    <div>{movie.role}</div>
+                    <div>
+                      <div>{movie.role}</div>
+                      <Link
+                        to={`/movies/update/${movie.actorId}`}
+                        state={{ movieId: id, role: movie.role }}
+                      >
+                        <button className={classes.movieDetailsUpdate}>
+                          Change Roles
+                        </button>
+                      </Link>
+                    </div>
                   )}
                 </div>
               </li>
@@ -108,12 +120,7 @@ export default function MovieDetailsPage() {
             </button>
           </Link>
           <br />
-          <Link to={`/movies/update/` + id}>
-            <button className={classes.movieDetailsUpdate}>
-              Change Title and Date, Actors, Roles
-            </button>
-          </Link>
-          <br />
+
           <Link to=".." relative="path">
             <button className={classes.movieDetails}>Back</button>
           </Link>

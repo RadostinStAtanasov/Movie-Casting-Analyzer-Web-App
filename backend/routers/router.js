@@ -34,7 +34,6 @@ router.delete("/movies/:movieId", (req, res) => {
 router.put("/movies/update/updatetitleAndReleasedate/:movieId", (req, res) => {
   const id = req.params.movieId;
   const data = req.body;
-  console.log(data);
 
   const fileContent = fs.readFileSync("./data/movies.csv", "utf8");
   const objCSVArr = papaNotParser(fileContent);
@@ -51,6 +50,32 @@ router.put("/movies/update/updatetitleAndReleasedate/:movieId", (req, res) => {
   console.log("update movie");
 });
 
+router.put("/movies/update/:movieId", (req, res) => {
+  const data = req.body;
+  const actorId = req.params.movieId;
+
+  console.log(data);
+  console.log(actorId);
+  console.log(data.movieId);
+  console.log(data.actorRoleName);
+
+  const fileContent = fs.readFileSync("./data/roles.csv", "utf8");
+  const objCSVArr = papaNotParserRoles(fileContent);
+
+  for (let i = 0; i < objCSVArr.length; i++) {
+    if (
+      objCSVArr[i].ActorID === actorId &&
+      objCSVArr[i].MovieID === data.movieId
+    ) {
+      objCSVArr[i].RoleName = data.newRoleName;
+    }
+  }
+
+  fs.writeFileSync("./data/roles.csv", Papa.unparse(objCSVArr));
+
+  console.log("role updated");
+});
+
 router.get("/roles", (req, res) => {
   const fileContent = fs.readFileSync("./data/roles.csv", "utf-8");
 
@@ -63,11 +88,6 @@ router.get("/actors", (req, res) => {
   const fileContent = fs.readFileSync("./data/actors.csv", "utf8");
 
   let objCSVArr = papaNotParser(fileContent);
-
-  //   const actorsData = Papa.parse(fileContent, {
-  //     header: true,
-  //     dynamicTyping: true,
-  //   });
 
   res.status(200).json(objCSVArr);
 });

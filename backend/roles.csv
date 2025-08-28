@@ -3,11 +3,11 @@ ID,ActorID,MovieID,RoleName
 2,2,1,Doctor
 3,6,1,Scientist
 4,24,1,Scientist
-5,22,2,actor rolq 2
-6,2,2,qwer
-7,1,2,soldier 22222
+5,22,2,Sidekick
+6,2,2,Engineer
+7,1,2,
 8,23,2,Spy
-9,21,3,
+9,21,3,NULL
 10,15,3,Engineer
 11,45,3,Detective
 12,50,4,Engineer
