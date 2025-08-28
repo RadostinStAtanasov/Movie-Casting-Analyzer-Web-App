@@ -50,9 +50,21 @@ export default function MovieDetailsPage() {
     resultActorsAndRoles
   );
 
+  function deleteActor(id) {
+    if (windows.confirm("Are you sure you want to delete this?")) {
+      fetch("http://localhost:3000/movies" + id, {
+        method: "DELETE",
+      })
+        .then(() => console.log("removed"))
+        .catch((err) => console.log(err));
+    }
+  }
+
   return (
     <>
       <h1>Movie Details</h1>
+
+      <br />
       <div className={classes.centerText}>
         <div className={classes.title}>
           <h2>Title </h2>
@@ -79,6 +91,20 @@ export default function MovieDetailsPage() {
               </li>
             ))}
           </ul>
+          <br />
+          <button
+            className={classes.deleteMovie}
+            onClick={() => deleteActor(id)}
+          >
+            Delete Movie
+          </button>
+          <br />
+          <Link to={`/movies/update/` + id}>
+            <button className={classes.movieDetailsUpdate}>
+              Update Title, Date, Actors, Roles
+            </button>
+          </Link>
+          <br />
           <Link to=".." relative="path">
             <button className={classes.movieDetails}>Back</button>
           </Link>

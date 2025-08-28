@@ -49,10 +49,45 @@ li span {
 }
 
 .btnChangeActorName {
-  width: 150px;  
+  width: 150px;
+  height: 35px;
+  border: none;
+  padding: 0;
+  border-radius: 5px;
+}
+
+.btnChangeActorName:hover {
+  background-color: rgb(0, 17, 255); /* Green */
+  color: white;
 }
 
 a {
   display: flex;
   align-items: center;
+}
+
+.updateActor {
+  width: 150px;
+  height: 25px;
+  border: none;
+  padding: 0;
+  border-radius: 5px;
+}
+
+.updateActor:hover {
+  background-color: rgb(0, 17, 255); /* Green */
+  color: white;
+}
+
+.deleteActor {
+  width: 100px;
+  height: 20px;
+  border: none;
+  padding: 0;
+  border-radius: 5px;
+}
+
+.deleteActor:hover {
+  background-color: rgb(255, 136, 0); /* Green */
+  color: white;
 }

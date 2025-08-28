@@ -1,4 +1,3 @@
-//const { v4: generateId } = require("uuid");
 const Papa = require("papaparse");
 const express = require("express");
 const fs = require("fs");
@@ -20,6 +19,8 @@ router.post("/movies", (req, res) => {
   fs.writeFileSync("./data/movies.csv", Papa.unparse(objCSVArr));
 });
 
+// router.delete("/movies/:movieId", ())
+
 router.get("/roles", (req, res) => {
   const fileContent = fs.readFileSync("./data/roles.csv", "utf-8");
 
@@ -27,16 +28,6 @@ router.get("/roles", (req, res) => {
 
   res.status(200).json(objCSVArr);
 });
-
-// router.get("/movies/:movieId", (req, res) => {
-//   const id = req.params.movieId;
-//   const fileContent = fs.readFileSync("./data/movies.csv", "utf8");
-
-//   let objCSVArr = papaNotParser(fileContent);
-//   let movie = objCSVArr.find((m) => m.ID === id);
-
-//   res.status(200).json(movie);
-// });
 
 router.get("/actors", (req, res) => {
   const fileContent = fs.readFileSync("./data/actors.csv", "utf8");
@@ -51,7 +42,7 @@ router.get("/actors", (req, res) => {
   res.status(200).json(objCSVArr);
 });
 
-router.post("/actors", async (req, res) => {
+router.post("/actors", (req, res) => {
   const data = req.body;
   const fileContent = fs.readFileSync("./data/actors.csv", "utf8");
   let objCSVArr = papaNotParser(fileContent);
@@ -59,7 +50,7 @@ router.post("/actors", async (req, res) => {
   fs.writeFileSync("./data/actors.csv", Papa.unparse(objCSVArr));
 });
 
-router.delete("/actors/:actorId", async (req, res) => {
+router.delete("/actors/:actorId", (req, res) => {
   const id = req.params.actorId;
   const fileContent = fs.readFileSync("./data/actors.csv", "utf8");
 

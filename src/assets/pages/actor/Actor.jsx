@@ -54,9 +54,11 @@ export default function ActorPage() {
           onChange={(e) => setBirthDate(e.target.value)}
         />
         <br />
-        <button type="submit" className={classes.btn} onClick={addActor}>
-          Add Actor
-        </button>
+        <Link to="..">
+          <button type="submit" className={classes.btn} onClick={addActor}>
+            Add Actor
+          </button>
+        </Link>
       </div>
 
       <ul>

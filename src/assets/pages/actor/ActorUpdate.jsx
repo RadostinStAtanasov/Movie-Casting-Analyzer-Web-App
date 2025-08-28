@@ -16,14 +16,19 @@ export default function ActorUpdatePage(props) {
   const idActor = location.state.idActor;
 
   let movieEdit = {};
+  let roleActor;
 
   let dataRoleMovieName = {
-    actorRole: actorRoleName == " " ? roleActor : actorRoleName,
-    movieTitle: actorMovieName == " " ? movieEdit.Title : actorMovieName,
+    actorRole: actorRoleName,
+    movieTitle: actorMovieName,
     idActor: idActor,
   };
 
   const updateActorMovies = (id, dataRoleMovieName) => {
+    if (actorRoleName == "" || actorMovieName == "") {
+      return;
+    }
+
     fetch("http://localhost:3000/actors/update/" + id, {
       method: "PUT",
       headers: {
@@ -44,8 +49,6 @@ export default function ActorUpdatePage(props) {
       })
       .catch((err) => console.log(err));
   }, []);
-
-  let roleActor;
 
   for (let i = 0; i < roles.length; i++) {
     if (roles[i].MovieID === id && roles[i].ActorID === idActor) {
@@ -101,7 +104,10 @@ export default function ActorUpdatePage(props) {
             )}
             <br />
             <Link to="../actors">
-              <button onClick={() => updateActorMovies(id, dataRoleMovieName)}>
+              <button
+                className={classes.updateBtnRoleMovie}
+                onClick={() => updateActorMovies(id, dataRoleMovieName)}
+              >
                 Update Movie and Role
               </button>
             </Link>

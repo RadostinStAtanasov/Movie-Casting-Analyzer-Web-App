@@ -76,3 +76,35 @@ li div {
 li div:nth-child(1) {
   color: whitesmoke;
 }
+
+.movieDetailsUpdate {
+
+}
+
+.movieDetailsUpdate {
+  transition-duration: 0.4s;
+  border-radius: 3px;
+  width: 250px;
+  height: 50px;
+  border: none;
+  align-items: center;
+}
+
+.movieDetailsUpdate:hover {
+  background-color: rgb(0, 17, 255); /* Green */
+  color: white;
+}
+
+.deleteMovie {
+  transition-duration: 0.4s;
+  border-radius: 3px;
+  width: 200px;
+  height: 25px;
+  border: none;
+  align-items: center;
+}
+
+.deleteMovie:hover {
+  background-color: rgb(255, 123, 0); /* Green */
+  color: white;
+}

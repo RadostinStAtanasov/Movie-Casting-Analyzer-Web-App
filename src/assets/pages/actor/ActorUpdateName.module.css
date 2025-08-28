@@ -1,0 +1,18 @@
+.actorContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.actorUpdateNameBtn {
+  width: 150px;
+  height: 20px;
+  border: none;
+  padding: 0;
+  border-radius: 5px;
+}
+
+.actorUpdateNameBtn:hover {
+  background-color: rgb(0, 55, 255); /* Green */
+  color: white;
+}

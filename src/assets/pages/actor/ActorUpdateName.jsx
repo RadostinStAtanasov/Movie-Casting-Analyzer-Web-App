@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import classes from "./ActorUpdate.module.css";
+import classes from "./ActorUpdateName.module.css";
 import { Link } from "react-router-dom";
 
 export default function ActorUpdateNamePage() {
@@ -15,6 +15,9 @@ export default function ActorUpdateNamePage() {
   };
 
   const updateActor = (id, dataName) => {
+    if (dataName.actorName == "") {
+      return;
+    }
     fetch("http://localhost:3000/actors/updateName/" + id, {
       method: "PUT",
       headers: {
@@ -71,7 +74,10 @@ export default function ActorUpdateNamePage() {
         </p>
       )}
       <Link to="../actors">
-        <button onClick={() => updateActor(id, dataName)}>
+        <button
+          className={classes.actorUpdateNameBtn}
+          onClick={() => updateActor(id, dataName)}
+        >
           Update Actor Name
         </button>
       </Link>

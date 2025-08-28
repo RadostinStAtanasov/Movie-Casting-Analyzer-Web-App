@@ -14,3 +14,18 @@ main {
     justify-content: center;
     flex-direction: column;
 }
+
+.updateBtnRoleMovie {
+    transition-duration: 0.4s;
+    border-radius: 3px;
+    width: 200px;
+    height: 25px;
+    border: none;
+    align-items: center;
+
+}
+
+.updateBtnRoleMovie:hover {
+  background-color: rgb(0, 8, 255); /* Green */
+  color: white;
+}
