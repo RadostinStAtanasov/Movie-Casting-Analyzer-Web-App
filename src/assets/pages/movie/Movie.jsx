@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import classes from "./Movie.module.css";
 import { IMAGES_MOVIES } from "../../util/generateImages";
+import newMovieImage from "../../images/mewMovieImage.jpg";
 
 export default function MoviePage() {
   const [movies, setMovies] = useState([]);
@@ -56,9 +57,11 @@ export default function MoviePage() {
           onChange={(e) => setReleaseDate(e.target.value)}
         />
         <br />
-        <button type="submit" className={classes.btn} onClick={addAcMovie}>
-          Add Movie
-        </button>
+        <Link to="..">
+          <button type="submit" className={classes.btn} onClick={addAcMovie}>
+            Add Movie
+          </button>
+        </Link>
       </div>
 
       <ul>
@@ -66,14 +69,11 @@ export default function MoviePage() {
           <li key={index}>
             <div className={classes.images}>
               <Link to={`/movies/${item.ID}`}>
-                <img
-                  src={
-                    index < images.length
-                      ? images[index].image
-                      : images[index - index].image
-                  }
-                  alt="theRock"
-                />
+                {item.ID > index ? (
+                  <img src={newMovieImage} />
+                ) : (
+                  <img src={images[index].image} alt="theRock" />
+                )}
                 {item.Title}
               </Link>
             </div>

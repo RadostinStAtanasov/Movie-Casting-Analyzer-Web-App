@@ -54,11 +54,6 @@ router.put("/movies/update/:movieId", (req, res) => {
   const data = req.body;
   const actorId = req.params.movieId;
 
-  console.log(data);
-  console.log(actorId);
-  console.log(data.movieId);
-  console.log(data.actorRoleName);
-
   const fileContent = fs.readFileSync("./data/roles.csv", "utf8");
   const objCSVArr = papaNotParserRoles(fileContent);
 
@@ -72,8 +67,6 @@ router.put("/movies/update/:movieId", (req, res) => {
   }
 
   fs.writeFileSync("./data/roles.csv", Papa.unparse(objCSVArr));
-
-  console.log("role updated");
 });
 
 router.get("/roles", (req, res) => {

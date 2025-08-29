@@ -66,15 +66,14 @@ export default function ActorPage() {
           rows.map((item, index) => (
             <li key={index}>
               <div className={classes.images}>
+                {index}|{item.ID}
                 <Link to={`/actors/${item.ID}`}>
-                  <img
-                    src={
-                      index < images.length
-                        ? images[index].image
-                        : images[index - index].image
-                    }
-                    alt="theRock"
-                  />
+                  {item.ID > index ? (
+                    <img src={newActorImage} />
+                  ) : (
+                    <img src={images[index].image} alt="theRock" />
+                  )}
+
                   {item.FullName}
                 </Link>
               </div>

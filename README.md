@@ -10,5 +10,6 @@ title, release date, nad cast(actors and their roles, or Unnamed if RoleName is 
 On Actorpage render all actors, click on actor show all movie they acted in and their role (if any) prer movie.
 
 How to start project.
+
 1. First: You need to go to backend folder and start server => 'npm start' in terminal to run the data .csv files.
-2. Second: In second split terminal you need to go to 'Movie-Casting-Analyzer-Web-App' folder and start frontend => 'npm run dev' in terminal
+2. Second: In second split terminal you need to go to 'Movie-Casting-Analyzer-Web-App' folder and start frontend => 'npm run dev' in terminal.
