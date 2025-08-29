@@ -66,7 +66,6 @@ export default function ActorPage() {
           rows.map((item, index) => (
             <li key={index}>
               <div className={classes.images}>
-                {index}|{item.ID}
                 <Link to={`/actors/${item.ID}`}>
                   {item.ID > index ? (
                     <img src={newActorImage} />
