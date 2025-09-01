@@ -36,6 +36,33 @@ export default function ActorPage() {
       .catch((error) => console.error(error));
   };
 
+  //console.log(rows);
+
+  // function papaNotParser(rows) {
+  //   let arrCsv = rows.split("\r\n");
+  //   let firstLineTitles = arrCsv[0].split(",");
+  //   let firstTitle = firstLineTitles[0];
+  //   let secondTitle = firstLineTitles[1];
+  //   let thirdTitle = firstLineTitles[2];
+  //   let objCSV = {};
+  //   let objCSVArr = [];
+
+  //   for (let i = 1; i < arrCsv.length; i++) {
+  //     let row = arrCsv[i].split(",");
+
+  //     objCSV[firstTitle] = row[0];
+  //     objCSV[secondTitle] = row[1];
+  //     objCSV[thirdTitle] = row[2];
+
+  //     objCSVArr.push(objCSV);
+  //     objCSV = {};
+  //   }
+
+  //   console.log(objCSVArr);
+  // }
+
+  // papaNotParser(rows);
+
   return (
     <div className="app">
       <h1>All Actors</h1>
