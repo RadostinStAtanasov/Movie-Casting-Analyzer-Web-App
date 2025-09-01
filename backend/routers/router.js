@@ -16,7 +16,7 @@ router.post("/movies", (req, res) => {
   let objCSVArr = papaNotParser(fileContent);
 
   objCSVArr.unshift({ ...data });
-  fs.writeFileSync("./data/movies.csv", papaNotUnParser(objCSVArr));
+  fs.writeFileSync("./data/movies.csv", papaNotUnParserDateChange(objCSVArr));
 });
 
 router.delete("/movies/:movieId", (req, res) => {
@@ -163,6 +163,27 @@ function papaNotUnParser(fileContent) {
       lineCSVFile += lineValues.join(",");
     } else {
       lineCSVFile += lineValues.join(",") + "\r\n";
+    }
+  }
+
+  console.log("tuka sme");
+  return lineCSVFile;
+}
+
+function papaNotUnParserDateChange(fileContent) {
+  let firstLineKeys = Object.keys(fileContent[0]);
+
+  let lineCSVFile = firstLineKeys.join(",") + "\r\n";
+
+  for (let i = 0; i < fileContent.length; i++) {
+    let lineValues = Object.values(fileContent[i]);
+    if (i == fileContent.length - 1) {
+      lineCSVFile += lineValues.join(",");
+    } else {
+      lineCSVFile += lineValues[0] + ",";
+      lineCSVFile += lineValues[1] + ",";
+      let splitLine = lineValues[2].split("T");
+      lineCSVFile += splitLine[0] + "\r\n";
     }
   }
 

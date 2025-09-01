@@ -1,14 +1,32 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import classes from "./Movie.module.css";
-import { IMAGES_MOVIES } from "../../util/generateImages";
-import newMovieImage from "../../images/mewMovieImage.jpg";
+import TextField from "@mui/material/TextField";
+import ListMovies from "./ListMovies";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 export default function MoviePage() {
   const [movies, setMovies] = useState([]);
   const [title, setTitle] = useState([]);
-  const [releaseDate, setReleaseDate] = useState([]);
-  const [images, setImages] = useState([...IMAGES_MOVIES]);
+  const [releaseDate, setReleaseDate] = useState();
+  const [inputText, setInputText] = useState("");
+
+  function inputHandler(e) {
+    let lowerCase = e.target.value.toLowerCase();
+    setInputText(lowerCase);
+  }
+
+  useEffect(() => {
+    fetch("http://localhost:3000/movies")
+      .then((response) => response.json())
+      .then((response) => {
+        setMovies(response);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const addAcMovie = () => {
     if (title == "" || releaseDate == "") {
@@ -27,35 +45,37 @@ export default function MoviePage() {
       .catch((error) => console.error(error));
   };
 
-  useEffect(() => {
-    fetch("http://localhost:3000/movies")
-      .then((response) => response.json())
-      .then((response) => {
-        setMovies(response);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  console.log(movies);
-
   return (
     <div className="app">
       <h1>All Movies</h1>
 
       <div className={classes.inputForm}>
-        <label htmlFor="">Title: </label>
-        <input
-          type="text"
+        <div className="main">
+          <div className="search">
+            <TextField
+              onChange={inputHandler}
+              id="outlined-basic"
+              variant="outlined"
+              label="Search"
+            />
+          </div>
+        </div>
+        <TextField
+          id="outlined-basic"
+          label="Title"
+          variant="outlined"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
         <br />
-        <label htmlFor="">ReleaseDate: </label>
-        <input
-          type="date"
-          value={releaseDate}
-          onChange={(e) => setReleaseDate(e.target.value)}
-        />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker
+            label="Release Date"
+            value={releaseDate}
+            onChange={(newValue) => setReleaseDate(newValue)}
+          />
+        </LocalizationProvider>
+
         <br />
         <Link to="..">
           <button type="submit" className={classes.btn} onClick={addAcMovie}>
@@ -64,22 +84,7 @@ export default function MoviePage() {
         </Link>
       </div>
 
-      <ul>
-        {movies.map((item, index) => (
-          <li key={index}>
-            <div className={classes.images}>
-              <Link to={`/movies/${item.ID}`}>
-                {item.ID > index ? (
-                  <img src={newMovieImage} />
-                ) : (
-                  <img src={images[index].image} alt="theRock" />
-                )}
-                {item.Title}
-              </Link>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <ListMovies input={inputText} />
     </div>
   );
 }

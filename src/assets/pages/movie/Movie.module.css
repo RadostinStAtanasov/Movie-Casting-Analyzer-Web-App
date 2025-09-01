@@ -1,4 +1,8 @@
 
+:root {
+    background-color: white
+}
+
 a {
     display: flex;
     flex-direction: column;
@@ -46,3 +50,26 @@ ul {
     border: none;
     border-radius: 5px;
 }
+
+.main {
+    display: flex;
+    height: 200vh;
+    width: 500px;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+h1 {
+    margin: 10px;
+    font-size: 40px;
+    color: rgb(1, 1, 59);
+}
+
+.search {
+    width: 30%;
+}
+
+ul li {
+    font-size: 20px;
+} 

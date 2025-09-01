@@ -50,8 +50,6 @@ export default function MovieDetailsPage() {
     resultActorsAndRoles
   );
 
-  console.log(resultMovieActorRoles);
-
   function deleteMovie(id) {
     if (window.confirm("Are you sure you want to delete this?")) {
       fetch("http://localhost:3000/movies/" + id, {
