@@ -89,7 +89,7 @@ router.post("/actors", (req, res) => {
   const fileContent = fs.readFileSync("./data/actors.csv", "utf8");
   let objCSVArr = papaNotParser(fileContent);
   objCSVArr.unshift({ ...data });
-  fs.writeFileSync("./data/actors.csv", papaNotUnParser(objCSVArr));
+  fs.writeFileSync("./data/actors.csv", papaNotUnParserDateChange(objCSVArr));
 });
 
 router.delete("/actors/:actorId", (req, res) => {
