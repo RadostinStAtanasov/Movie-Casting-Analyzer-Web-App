@@ -60,10 +60,21 @@ ul {
   color: white;
 }
 
+.inputs {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .inputForm {
     display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
     margin-left: 110px;
     margin-bottom: 50px;
+    width: 300px;
+    border: 2px solid rgb(67, 70, 212);
+    border-radius: 5px;
 }
 
 .inputForm input {

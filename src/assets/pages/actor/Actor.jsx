@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { Button } from "@mui/material";
 
 export default function ActorPage() {
   const [rows, setRows] = useState([]);
@@ -47,34 +48,42 @@ export default function ActorPage() {
   return (
     <div className="app">
       <h1>All Actors</h1>
-      <TextField
-        onChange={inputHandler}
-        id="outlined-basic"
-        variant="outlined"
-        label="Search"
-      />
-      <div className={classes.inputForm}>
-        <TextField
-          id="outlined-basic"
-          label="FullName"
-          variant="outlined"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-        />
-        <br />
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DatePicker
-            label="BirthDate"
-            value={birthDate}
-            onChange={(newValue) => setBirthDate(newValue)}
+
+      <div className={classes.inputs}>
+        <div className={classes.inputForm}>
+          <p style={{ color: "black" }}>Add Actor</p>
+          <TextField
+            id="outlined-basic"
+            label="FullName"
+            variant="outlined"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
           />
-        </LocalizationProvider>
-        <br />
-        <Link to="..">
-          <button type="submit" className={classes.btn} onClick={addActor}>
-            Add Actor
-          </button>
-        </Link>
+          <br />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              label="BirthDate"
+              value={birthDate}
+              onChange={(newValue) => setBirthDate(newValue)}
+            />
+          </LocalizationProvider>
+          <br />
+          <Link to="..">
+            <Button type="submit" onClick={addActor}>
+              Add Actor
+            </Button>
+          </Link>
+        </div>
+        <div className="main">
+          <div className="search">
+            <TextField
+              onChange={inputHandler}
+              id="outlined-basic"
+              variant="outlined"
+              label="Search"
+            />
+          </div>
+        </div>
       </div>
 
       <ListOfActors input={inputText} />

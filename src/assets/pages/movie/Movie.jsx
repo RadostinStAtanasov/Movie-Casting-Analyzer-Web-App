@@ -6,6 +6,7 @@ import ListMovies from "./ListMovies";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { Button } from "@mui/material";
 
 export default function MoviePage() {
   const [movies, setMovies] = useState([]);
@@ -48,7 +49,37 @@ export default function MoviePage() {
     <div className="app">
       <h1>All Movies</h1>
 
-      <div className={classes.inputForm}>
+      <div className={classes.inputs}>
+        <div className={classes.inputForm}>
+          <p style={{ color: "black" }}>Add Movie</p>
+          <TextField
+            id="outlined-basic"
+            label="Title"
+            variant="outlined"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <br />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              label="Release Date"
+              value={releaseDate}
+              onChange={(newValue) => setReleaseDate(newValue)}
+            />
+          </LocalizationProvider>
+
+          <br />
+          <Link to="..">
+            <Button
+              type="submit"
+              variant="text"
+              //className={classes.btn}
+              onClick={addAcMovie}
+            >
+              Add Movie
+            </Button>
+          </Link>
+        </div>
         <div className="main">
           <div className="search">
             <TextField
@@ -59,30 +90,7 @@ export default function MoviePage() {
             />
           </div>
         </div>
-        <TextField
-          id="outlined-basic"
-          label="Title"
-          variant="outlined"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <br />
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DatePicker
-            label="Release Date"
-            value={releaseDate}
-            onChange={(newValue) => setReleaseDate(newValue)}
-          />
-        </LocalizationProvider>
-
-        <br />
-        <Link to="..">
-          <button type="submit" className={classes.btn} onClick={addAcMovie}>
-            Add Movie
-          </button>
-        </Link>
       </div>
-
       <ListMovies input={inputText} />
     </div>
   );
