@@ -46,7 +46,7 @@ router.put("/movies/update/updatetitleAndReleasedate/:movieId", (req, res) => {
     }
   }
 
-  fs.writeFileSync("./data/movies.csv", papaNotUnParser(objCSVArr));
+  fs.writeFileSync("./data/movies.csv", papaNotUnParserDateChange(objCSVArr));
 });
 
 router.put("/movies/update/:movieId", (req, res) => {
@@ -183,11 +183,16 @@ function papaNotUnParserDateChange(fileContent) {
       lineCSVFile += lineValues[0] + ",";
       lineCSVFile += lineValues[1] + ",";
       let splitLine = lineValues[2].split("T");
-      lineCSVFile += splitLine[0] + "\r\n";
+      if (firstLineKeys[1] === "Title") {
+        lineCSVFile += splitLine[0].split("-").join("/") + "\r\n";
+      } else {
+        lineCSVFile += splitLine[0] + "\r\n";
+      }
     }
   }
 
   console.log("tuka sme");
+  console.log(firstLineKeys[1]);
   return lineCSVFile;
 }
 

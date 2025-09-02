@@ -61,7 +61,7 @@ export default function MovieUpdateTitleReleasedatePage() {
           />
         </LocalizationProvider>
 
-        <Link to="/actors" relative="path">
+        <Link to="/movies" relative="path">
           <Button
             variant="contained"
             onClick={() => updateTitleReleasedate(id, newTitleAndDate)}

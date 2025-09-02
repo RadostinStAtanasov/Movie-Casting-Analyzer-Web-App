@@ -33,7 +33,13 @@ export default function ListOfActors(props) {
             <li key={index}>
               <div className={classes.images}>
                 <Link to={`/actors/${item.ID}`}>
-                  {item.ID >= filteredData.length - 1 ? (
+                  {filteredData.length <= rows.length ? (
+                    item.ID < rows.length - 1 ? (
+                      <img src={images[index].image} alt="theRock" />
+                    ) : (
+                      <img src={newActorImage} />
+                    )
+                  ) : item.ID >= filteredData.length - 1 ? (
                     <img src={newActorImage} />
                   ) : (
                     <img src={images[index].image} alt="theRock" />
