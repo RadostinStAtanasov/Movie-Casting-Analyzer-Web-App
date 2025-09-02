@@ -6,6 +6,7 @@ import {
   movieAllActors,
   takeActorsNames,
 } from "../../util/functionsProcessing";
+import { Button } from "@mui/material";
 
 export default function MovieDetailsPage() {
   const params = useParams();
@@ -76,9 +77,7 @@ export default function MovieDetailsPage() {
         </div>
         <br />
         <Link to={`/movies/update/updatetitleAndReleasedate/` + id}>
-          <button className={classes.movieDetailsUpdate}>
-            Change Title and Release date
-          </button>
+          <Button variant="contained">Change Title and Release date</Button>
         </Link>
         <br />
         <div className={classes.containerActors}>
@@ -98,9 +97,7 @@ export default function MovieDetailsPage() {
                         to={`/movies/update/${movie.actorId}`}
                         state={{ movieId: id, role: movie.role }}
                       >
-                        <button className={classes.movieDetailsUpdate}>
-                          Change Roles
-                        </button>
+                        <Button variant="contained">Edit Role</Button>
                       </Link>
                     </div>
                   )}
@@ -110,17 +107,18 @@ export default function MovieDetailsPage() {
           </ul>
           <br />
           <Link to="..">
-            <button
-              className={classes.deleteMovie}
+            <Button
               onClick={() => deleteMovie(id)}
+              variant="contained"
+              color="error"
             >
               Delete Movie
-            </button>
+            </Button>
           </Link>
           <br />
 
           <Link to=".." relative="path">
-            <button className={classes.movieDetails}>Back</button>
+            <Button variant="contained">Back</Button>
           </Link>
         </div>
       </div>

@@ -51,7 +51,7 @@ export default function ActorPage() {
 
       <div className={classes.inputs}>
         <div className={classes.inputForm}>
-          <p style={{ color: "black" }}>Add Actor</p>
+          <p>Add Actor</p>
           <TextField
             id="outlined-basic"
             label="FullName"

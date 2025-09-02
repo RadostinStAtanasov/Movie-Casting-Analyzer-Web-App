@@ -77,6 +77,10 @@ ul {
     border-radius: 5px;
 }
 
+.inputForm p {
+    color: "black"
+}
+
 .inputForm input {
     margin-left: 10px;
 }

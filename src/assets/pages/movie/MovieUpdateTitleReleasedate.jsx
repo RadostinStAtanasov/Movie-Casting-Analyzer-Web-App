@@ -2,10 +2,15 @@ import { useEffect, useState } from "react";
 import classes from "./MovieUpdateTitleReleasedate.module.css";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 export default function MovieUpdateTitleReleasedatePage() {
   const [title, setTitle] = useState([]);
-  const [date, setDate] = useState([]);
+  const [date, setDate] = useState();
 
   const params = useParams();
   const id = params.movieId;
@@ -37,10 +42,10 @@ export default function MovieUpdateTitleReleasedatePage() {
   return (
     <>
       <div className={classes.updateTitleReleasedate}>
-        <div className={classes.title}>Change Title releasedate</div>
+        <div className={classes.title}>Change Title and Releasedate</div>
 
-        <label htmlFor="title">New Title</label>
-        <input
+        <TextField
+          label="New Title"
           type="text"
           value={title}
           onChange={(e) => {
@@ -48,20 +53,25 @@ export default function MovieUpdateTitleReleasedatePage() {
           }}
         />
 
-        <label htmlFor="title">New Releasedate</label>
-        <input
-          type="date"
-          value={date}
-          onChange={(e) => {
-            setDate(e.target.value);
-          }}
-        />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker
+            label="New Date"
+            value={date}
+            onChange={(newValue) => setDate(newValue)}
+          />
+        </LocalizationProvider>
 
-        <button onClick={() => updateTitleReleasedate(id, newTitleAndDate)}>
-          Update
-        </button>
-        <Link to="..">
-          <button>Back</button>
+        <Link to="/actors" relative="path">
+          <Button
+            variant="contained"
+            onClick={() => updateTitleReleasedate(id, newTitleAndDate)}
+          >
+            Update
+          </Button>
+        </Link>
+
+        <Link to=".." relative="path">
+          <Button variant="contained">Back</Button>
         </Link>
       </div>
     </>

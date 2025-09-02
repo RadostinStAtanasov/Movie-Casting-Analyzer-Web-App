@@ -103,7 +103,7 @@ export default function ActorUpdatePage(props) {
               </p>
             )}
             <br />
-            <Link to="../actors">
+            <Link to=".." relative="path">
               <button
                 className={classes.updateBtnRoleMovie}
                 onClick={() => updateActorMovies(id, dataRoleMovieName)}

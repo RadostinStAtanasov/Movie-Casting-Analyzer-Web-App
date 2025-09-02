@@ -40,6 +40,10 @@ ul {
     border-radius: 5px;
 }
 
+.inputForm {
+    color: "black"
+}
+
 .inputForm input {
     margin-left: 10px;
 }

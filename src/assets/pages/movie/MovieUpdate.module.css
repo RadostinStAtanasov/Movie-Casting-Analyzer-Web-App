@@ -1,0 +1,27 @@
+.actorsUpdate p {
+    color: black 
+}
+
+.updateBtnRoleMovie {
+    width: 150px;
+    height: 24px;
+    margin-left: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 15px;
+}
+
+.updateBtnRoleMovie:hover {
+    background-color: blue; /* Green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+input {
+    background-color: white;
+    border-radius: 5px;
+}
+
+.actorsUpdate Button {
+    margin-top: 20px;
+}

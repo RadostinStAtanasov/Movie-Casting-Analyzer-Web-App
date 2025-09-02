@@ -1,12 +1,13 @@
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import classes from "./MovieUpdate.module.css";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { Button } from "@mui/material";
+import TextField from "@mui/material/TextField";
 
 export default function MovieUpdatePage() {
-  const [actorRoleName, setActorRoleName] = useState([]);
-  const [actorMovieName, setActorMovieName] = useState([]);
+  const [actorRoleName, setActorRoleName] = useState();
 
   const params = useParams();
   const id = params.movieId;
@@ -40,24 +41,21 @@ export default function MovieUpdatePage() {
         <li>
           <div className={classes.actorsUpdate}>
             <p>Your role is: {role}</p>
-            <input
-              type="text"
+
+            <TextField
+              label="New Role"
+              variant="outlined"
               value={actorRoleName}
               onChange={(e) => setActorRoleName(e.target.value)}
+              id={classes.textField}
             />
-            {actorRoleName !== "" && (
-              <p>
-                Your <strong>new</strong> ROLE is: {actorRoleName}.
-              </p>
-            )}
-            <br />
-            <Link to="..">
-              <button
-                className={classes.updateBtnRoleMovie}
+            <Link to="/movies" relative="path">
+              <Button
+                variant="contained"
                 onClick={() => updateActorMovies(id, dataSend)}
               >
                 Update Role
-              </button>
+              </Button>
             </Link>
           </div>
         </li>

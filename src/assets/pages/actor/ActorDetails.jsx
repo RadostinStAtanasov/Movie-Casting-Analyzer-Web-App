@@ -5,6 +5,7 @@ import {
   actorAllMoviePrayed,
   getMoviesInActorDetails,
 } from "../../util/functionsProcessing";
+import { Button } from "@mui/material";
 
 export default function ActorDetailsPage() {
   const params = useParams();
@@ -73,9 +74,7 @@ export default function ActorDetailsPage() {
       <h1>All movies acted in</h1>
       <h2 style={{ textAlign: "center" }}>{actorName}</h2>
       <Link to={`/actors/updateName/${id}`}>
-        <button className={classes.btnChangeActorName} type="button">
-          Change Actor Name
-        </button>
+        <Button variant="contained">Change Actor Name</Button>
       </Link>
       <br />
       <ul className={classes.ulList}>
@@ -92,29 +91,26 @@ export default function ActorDetailsPage() {
                   <div>{item.Role}</div>
                 )}
                 <br />
+                <Link to={`/actors/update/${item.ID}`} state={{ idActor: id }}>
+                  <Button variant="contained">edit Role and Movie</Button>
+                </Link>
               </div>
-              <Link to={`/actors/update/${item.ID}`} state={{ idActor: id }}>
-                <button className={classes.updateActor}>
-                  Update Role and Movie
-                </button>
-              </Link>
             </li>
           ))
         ) : (
           <div>Not Played at any movie</div>
         )}
         <Link to="..">
-          <button
-            className={classes.deleteActor}
+          <Button
             onClick={() => deleteActor(id)}
+            variant="contained"
+            color="error"
           >
             Delete Actor
-          </button>
+          </Button>
         </Link>
         <Link to=".." relative="path">
-          <button type="button" className={classes.detailsMovie}>
-            Back
-          </button>
+          <Button variant="contained">Back</Button>
         </Link>
       </ul>
     </>

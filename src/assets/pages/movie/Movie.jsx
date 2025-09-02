@@ -51,7 +51,7 @@ export default function MoviePage() {
 
       <div className={classes.inputs}>
         <div className={classes.inputForm}>
-          <p style={{ color: "black" }}>Add Movie</p>
+          <p>Add Movie</p>
           <TextField
             id="outlined-basic"
             label="Title"
@@ -70,12 +70,7 @@ export default function MoviePage() {
 
           <br />
           <Link to="..">
-            <Button
-              type="submit"
-              variant="text"
-              //className={classes.btn}
-              onClick={addAcMovie}
-            >
+            <Button type="submit" variant="text" onClick={addAcMovie}>
               Add Movie
             </Button>
           </Link>
