@@ -60,9 +60,7 @@ export default function ActorUpdateNamePage() {
     <div className={classes.actorContainer}>
       <div>Actor Update Name</div>
 
-      <p style={{ color: "black" }}>
-        <strong>Your name is: {resultActorName}</strong>
-      </p>
+      <p>Your name is: {resultActorName}</p>
 
       <TextField
         label="New Name"

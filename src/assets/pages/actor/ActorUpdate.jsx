@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import classes from "./ActorUpdate.module.css";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
+import TextField from "@mui/material/TextField";
 
 export default function ActorUpdatePage(props) {
   const [roles, setRoles] = useState([]);
@@ -78,40 +80,41 @@ export default function ActorUpdatePage(props) {
       <ul>
         <li>
           <div className={classes.actorsUpdate}>
-            <div>{movieEdit.Title}</div>
-            <input
+            <div className={classes.textColor}>
+              Your Title is:{movieEdit.Title}
+            </div>
+            <TextField
+              label="New title"
               type="text"
               value={actorMovieName}
               onChange={(e) => setActorMovieName(e.target.value)}
             />
-            {actorMovieName !== "" && (
-              <p>
-                Your <strong>new</strong> MOVIE TITLE is: {actorMovieName}.
-              </p>
-            )}
             <br />
             <br />
-            <div>{roleActor}</div>
-            <input
+            <div className={classes.textColor}>Your Role is:{roleActor}</div>
+            <TextField
+              label="New role"
               type="text"
               value={actorRoleName}
               onChange={(e) => setActorRoleName(e.target.value)}
             />
-            {actorRoleName !== "" && (
-              <p>
-                Your <strong>new</strong> ROLE is: {actorRoleName}.
-              </p>
-            )}
             <br />
-            <Link to=".." relative="path">
-              <button
-                className={classes.updateBtnRoleMovie}
+            <Link
+              to="/actors"
+              relative="path"
+              className={classes.updateBtnRoleMovie}
+            >
+              <Button
+                variant="contained"
                 onClick={() => updateActorMovies(id, dataRoleMovieName)}
               >
                 Update Movie and Role
-              </button>
+              </Button>
             </Link>
           </div>
+          <Link to="/actors" path="relative">
+            <Button variant="contained">Back</Button>
+          </Link>
         </li>
       </ul>
     </>

@@ -3,6 +3,14 @@
     flex-direction: column;
 }
 
+.actorsUpdate div:nth-child(1) {
+    color: black;
+}
+
+.actorsUpdate div:nth-child(2) {
+    color: black;
+}
+
 .actorContainer {
     display: flex;
     flex-direction: column;
@@ -16,16 +24,9 @@ main {
 }
 
 .updateBtnRoleMovie {
-    transition-duration: 0.4s;
-    border-radius: 3px;
-    width: 200px;
-    height: 25px;
-    border: none;
-    align-items: center;
-
+  margin-bottom: 25px;
 }
 
-.updateBtnRoleMovie:hover {
-  background-color: rgb(0, 8, 255); /* Green */
-  color: white;
+.textColor {
+    color: black;
 }

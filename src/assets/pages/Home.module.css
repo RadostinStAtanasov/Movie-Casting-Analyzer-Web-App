@@ -1,6 +1,5 @@
 
 .title {
-    /* margin-bottom: 125px; */
     margin: 0;
 }
 
@@ -27,16 +26,12 @@
     align-content: center;
     flex-wrap: wrap;
     position: relative;
-    overflow: hidden;
-
-    
+    overflow: hidden;    
 }
 
 .topActorPair {
     transform: skewY(-30deg);
 }
-
-
 
 .topActorPairContainer div {
     font-size: 32px;
