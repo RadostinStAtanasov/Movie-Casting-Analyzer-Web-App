@@ -35,7 +35,7 @@ export default function ListOfActors(props) {
                 <Link to={`/actors/${item.ID}`}>
                   {filteredData.length <= rows.length ? (
                     item.ID < rows.length - 1 ? (
-                      <img src={images[index].image} alt="theRock" />
+                      <img src={images[item.ID].image} alt="theRock" />
                     ) : (
                       <img src={newActorImage} />
                     )

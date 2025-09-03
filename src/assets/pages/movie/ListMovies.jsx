@@ -31,15 +31,15 @@ export default function ListMovies(props) {
         {filteredData.map((item, index) => (
           <li key={index}>
             <div className={classes.images}>
-              {/* <p style={{ color: "black" }}>
+              <p style={{ color: "black" }}>
                 {"itemID - " + item.ID}|{"index - " + index + 1}|
                 {"filtereddata" + filteredData.length}|
                 {"movies" + movies.length}
-              </p> */}
+              </p>
               <Link to={`/movies/${item.ID}`}>
                 {filteredData.length <= movies.length ? (
                   item.ID < movies.length - 1 ? (
-                    <img src={images[index].image} alt="theRock" />
+                    <img src={images[item.ID].image} alt="theRock" />
                   ) : (
                     <img src={newMovieImage} />
                   )
