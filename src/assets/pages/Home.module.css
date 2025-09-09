@@ -13,13 +13,10 @@
     background:transparent;
     overflow: hidden;
     background-image: url("../images/backgroundHome.jpg");
-    /* background-repeat: no-repeat; */
-    /* background-size: 800px 400px; */
     transform: skewY(30deg);
     z-index: -101;
     height:50vh;
     width: 100vw;
-    /* height: 800px; */
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -75,4 +72,11 @@
 }
 .listOfMovieTitles strong {
     color:  #242424;;
+}
+
+@media only screen and (max-width: 930px) {
+    .container {
+        width: 940px;
+        height: 400px;
+    }
 }

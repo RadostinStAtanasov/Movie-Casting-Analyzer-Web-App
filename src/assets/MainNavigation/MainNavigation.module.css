@@ -52,3 +52,86 @@ nav ul {
 .list a.active {
   color: red
 }
+
+
+@media only screen and (max-width: 1140px) {
+  :root {
+    display: flex;
+    justify-content: center;
+  }
+.header {
+    width: 950px;
+  }
+  .list  {
+    width: 950px;
+  }
+  nav {
+    width: 1100px;
+    /* gap: 25px; */
+  }
+}
+
+@media only screen and (max-width: 1040px) {
+  .header {
+    width: 850px;
+  }
+  .list  {
+    width: 850px;
+  }
+  nav {
+    width: 1000px;
+    /* gap: 25px; */
+  }
+}
+
+@media only screen and (max-width: 980px) {
+  .header {
+    width: 800px;
+  }
+  .list  {
+    width: 800px;
+  }
+    nav {
+    width: 900px;
+    /* gap: 25px; */
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .header {
+    width: 770px;
+  }
+  .list  {
+    width: 770px;
+  }
+    nav {
+    width: 800px;
+    /* gap: 25px; */
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .header {
+    width: 630px;
+  }
+  .list  {
+    width: 630px;
+  }
+    nav {
+    width: 680px;
+    /* gap: 25px; */
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .header {
+    width: 500px;
+  }
+  .list  {
+    width: 500px;
+  }
+    nav {
+    width: 520px;
+    /* gap: 25px; */
+  }
+}

@@ -46,7 +46,7 @@ export default function MoviePage() {
   };
 
   return (
-    <div className="app">
+    <div className={classes.app}>
       <h1>All Movies</h1>
 
       <div className={classes.inputs}>
